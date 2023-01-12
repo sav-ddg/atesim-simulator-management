@@ -1,5 +1,12 @@
 import "./App.css";
 import { useState } from "react";
+import {
+  rooms,
+  bilgisayar_ag,
+  tab1_button_texts_1,
+  tab1_button_texts_2,
+  tab1_button_texts_3,
+} from "./Consts";
 
 function App() {
   const [toggleState, setToggleState] = useState(1);
@@ -9,7 +16,9 @@ function App() {
 
   return (
     <div className="App">
-      <div className="header">ATESİM KONTROL PANEL</div>
+      <div className="header">
+        <h7>ATESİM KONTROL PANEL</h7>
+      </div>
       <div className="tabs">
         <h1
           onClick={() => toggleTab(1)}
@@ -28,34 +37,20 @@ function App() {
         <table className="table">
           <thead>
             <tr>
-              <th colSpan={3}> 25M </th>
-              <th colSpan={3}> 50M </th>
-              <th colSpan={3}> OMA </th>
-              <th colSpan={3}> OKUN </th>
-              <th colSpan={3}> AE </th>
-              <th colSpan={3}> HP </th>
+              {rooms.map((val, key) => {
+                return (
+                  <th colSpan={3} key={key}>
+                    {val}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td></td>
-              <td>Bilgisayar </td>
-              <td>Ağ</td>
-              <td></td>
-              <td>Bilgisayar </td>
-              <td>Ağ</td>
-              <td></td>
-              <td>Bilgisayar </td>
-              <td>Ağ</td>
-              <td></td>
-              <td>Bilgisayar </td>
-              <td>Ağ</td>
-              <td></td>
-              <td>Bilgisayar </td>
-              <td>Ağ</td>
-              <td></td>
-              <td>Bilgisayar </td>
-              <td>Ağ</td>
+              {rooms.map(() => {
+                return bilgisayar_ag;
+              })}
             </tr>
             <tr>
               <td> 25AP1IG </td>
@@ -138,64 +133,31 @@ function App() {
               <td></td>
             </tr>
             <tr>
-              <td colSpan={3}>
-                <button> 25m Atış Poligonu Açılış Modu </button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
+              {tab1_button_texts_1.map((val, key) => {
+                return (
+                  <td key={key} colSpan={3}>
+                    <button>{val}</button>
+                  </td>
+                );
+              })}
             </tr>
             <tr>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
+              {tab1_button_texts_2.map((val, key) => {
+                return (
+                  <td key={key} colSpan={3}>
+                    <button>{val}</button>
+                  </td>
+                );
+              })}
             </tr>
             <tr>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
-              <td colSpan={3}>
-                <button></button>
-              </td>
+              {tab1_button_texts_3.map((val, key) => {
+                return (
+                  <td key={key} colSpan={3}>
+                    <button>{val}</button>
+                  </td>
+                );
+              })}
             </tr>
           </tbody>
         </table>
