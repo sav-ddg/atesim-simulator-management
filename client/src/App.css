@@ -2,5 +2,83 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background: url(../public/ATESIM_Main_Background.png) center;
+  min-height: 100vh;
+}
+
+.App {
+  gap: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.header {
+  font-size: 40px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid rgb(65, 230, 134);
+  width: 80%;
+  height: 80px;
+}
+
+.tabs > h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+.tab {
+  background-color: rgb(255, 255, 255);
+}
+.activeTab {
+  background-color: rgba(55, 161, 69, 0.425);
+}
+
+table {
+  table-layout: fixed;
+  width: 80vw;
+  height: 70vh;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: rgba(118, 201, 240, 0.5);
+}
+
+th,
+td {
+  height: 5rem;
+  border: 2.5px solid rgb(20, 20, 32);
   text-align: center;
+}
+
+tr:nth-child(8) > td,
+tr:nth-child(7) > td {
+  border-top: 0px;
+}
+tr:nth-child(6) > td,
+tr:nth-child(7) > td {
+  border-bottom: 0px;
+}
+
+tr > td > button {
+  width: 90%;
+  height: 80%;
+  border-radius: 5px;
+  background-color: white;
+}
+
+tr > td > button:hover {
+  background-color: rgba(118, 201, 240, 0.5);
 }

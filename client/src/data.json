@@ -1,0 +1,276 @@
+{
+  "System": [
+    {
+      "EK1-Network": 1
+    },
+    {
+      "EK2-Network": 1
+    },
+    {
+      "EK3-Network": 1
+    },
+    {
+      "EK4-Network": 1
+    },
+    {
+      "GK1-Network": 1
+    },
+    {
+      "GK2-Network": 1
+    },
+    {
+      "GK3-Network": 1
+    },
+    {
+      "25AP1IG-Network": 1
+    },
+    {
+      "25AP2IG-Network": 1
+    },
+    {
+      "50AP1IG-Network": 1
+    },
+    {
+      "50AP2IG-Network": 1
+    },
+    {
+      "OKUN1IG-Network": 1
+    },
+    {
+      "OKUN2IG-Network": 1
+    },
+    {
+      "OKUN3IG-Network": 1
+    },
+    {
+      "OKUN4IG-Network": 1
+    },
+    {
+      "OMA1IG-Network": 1
+    },
+    {
+      "OMA2IG-Network": 1
+    },
+    {
+      "OMA3IG-Network": 1
+    },
+    {
+      "OMA4IG-Network": 1
+    },
+    {
+      "AE1IG-Network": 1
+    },
+    {
+      "AE2IG-Network": 1
+    },
+    {
+      "AE3IG-Network": 1
+    },
+    {
+      "AE4IG-Network": 1
+    },
+    {
+      "HP1IG-Network": 1
+    },
+    {
+      "HP2IG-Network": 1
+    },
+    {
+      "EK1-State": 1
+    },
+    {
+      "EK2-State": 1
+    },
+    {
+      "EK3-State": 1
+    },
+    {
+      "EK4-State": 1
+    },
+    {
+      "GK1-State": 1
+    },
+    {
+      "GK2-State": 1
+    },
+    {
+      "GK3-State": 1
+    },
+    {
+      "25AP1IG-State": 1
+    },
+    {
+      "25AP2IG-State": 1
+    },
+    {
+      "50AP1IG-State": 1
+    },
+    {
+      "50AP2IG-State": 1
+    },
+    {
+      "OKUN1IG-State": 1
+    },
+    {
+      "OKUN2IG-State": 1
+    },
+    {
+      "OKUN3IG-State": 1
+    },
+    {
+      "OKUN4IG-State": 1
+    },
+    {
+      "OMA1IG-State": 1
+    },
+    {
+      "OMA2IG-State": 1
+    },
+    {
+      "OMA3IG-State": 1
+    },
+    {
+      "OMA4IG-State": 1
+    },
+    {
+      "AE1IG-State": 1
+    },
+    {
+      "AE2IG-State": 1
+    },
+    {
+      "AE3IG-State": 1
+    },
+    {
+      "AE4IG-State": 1
+    },
+    {
+      "HP1IG-State": 1
+    },
+    {
+      "HP2IG-State": 1
+    }
+  ],
+  "Projection": [
+    {
+      "50AP1PR1-Status": 4
+    },
+    {
+      "50AP1PR2-Status": 4
+    },
+    {
+      "50AP2PR1-Status": 4
+    },
+    {
+      "50AP2PR2-Status": 4
+    },
+    {
+      "25AP1PR1-Status": 4
+    },
+    {
+      "25AP1PR2-Status": 4
+    },
+    {
+      "25AP2PR1-Status": 4
+    },
+    {
+      "25AP2PR2-Status": 4
+    },
+    {
+      "AE1PR2-Status": 4
+    },
+    {
+      "AE1PR1-Status": 4
+    },
+    {
+      "AE2PR1-Status": 4
+    },
+    {
+      "AE2PR2-Status": 4
+    },
+    {
+      "AE2PR3-Status": 4
+    },
+    {
+      "AE2PR4-Status": 4
+    },
+    {
+      "AE3PR1-Status": 4
+    },
+    {
+      "AE3PR2-Status": 4
+    },
+    {
+      "AE3PR3-Status": 4
+    },
+    {
+      "AE3PR4-Status": 4
+    },
+    {
+      "AE4PR1-Status": 4
+    },
+    {
+      "AE4PR2-Status": 4
+    },
+    {
+      "AE4PR3-Status": 4
+    },
+    {
+      "AE4PR4-Status": 4
+    },
+    {
+      "HP1PR-Status": 4
+    },
+    {
+      "HP2PR-Status": 4
+    },
+    {
+      "OKUN1PR-Status": 4
+    },
+    {
+      "OKUN2PR-Status": 4
+    },
+    {
+      "OKUN3PR-Status": 4
+    },
+    {
+      "OKUN4PR-Status": 4
+    },
+    {
+      "OMA1PR1-Status": 4
+    },
+    {
+      "OMA1PR2-Status": 4
+    },
+    {
+      "OMA1PR3-Status": 4
+    },
+    {
+      "OMA2PR1-Status": 4
+    },
+    {
+      "OMA2PR2-Status": 4
+    },
+    {
+      "OMA2PR3-Status": 4
+    },
+    {
+      "OMA3PR1-Status": 4
+    },
+    {
+      "OMA3PR2-Status": 4
+    },
+    {
+      "OMA3PR3-Status": 4
+    },
+    {
+      "OMA4PR1-Status": 4
+    },
+    {
+      "OMA4PR2-Status": 4
+    },
+    {
+      "OMA4PR3-Status": 4
+    }
+  ]
+}
