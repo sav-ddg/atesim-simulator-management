@@ -112,3 +112,6 @@ tr:nth-child(7) > td {
 .gridButtons:hover {
   background-color: rgb(38, 61, 80);
 }
+.gridbtns {
+  display: none;
+}

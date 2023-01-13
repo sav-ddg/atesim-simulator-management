@@ -40,12 +40,6 @@ export const tab2_button_texts_1 = [
   " ÖKUN Projeksiyonları Kapanış Modu ",
   " Atış Evi Projeksiyonları Kapanış Modu ",
   " Hareketli Platformlar Projeksiyonları Kapanış Modu ",
-  " 25m Projeksiyonları Yeniden Başlat ",
-  " 50m Projeksiyonları Yeniden Başlat ",
-  " OMA Projeksiyonları Yeniden Başlat ",
-  " ÖKUN Projeksiyonları Yeniden Başlat ",
-  " Atış Evi Projeksiyonları Yeniden Başlat ",
-  " Hareketli Platformlarları Projeksiyon Yeniden Başlat ",
 ];
 
 export const bos_satir = (

@@ -266,7 +266,18 @@ function App() {
       </div>
       <div className="gridContainer">
         {tab1_button_texts_1.map((val, key) => {
-          return <button className="gridButtons">{val}</button>;
+          return (
+            <button className={toggleState === 1 ? "gridButtons" : "gridbtns"}>
+              {val}
+            </button>
+          );
+        })}
+        {tab2_button_texts_1.map((val, key) => {
+          return (
+            <button className={toggleState === 2 ? "gridButtons" : "gridbtns"}>
+              {val}
+            </button>
+          );
         })}
       </div>
     </div>
