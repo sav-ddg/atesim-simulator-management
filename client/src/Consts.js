@@ -26,8 +26,7 @@ export const tab1_button_texts_1 = [
   " Atış Evi Yeniden Başlat ",
   " Hareketli Platformlar Yeniden Başlat ",
 ];
-export const tab1_button_texts_2 = [];
-export const tab1_button_texts_3 = [];
+
 export const tab2_button_texts_1 = [
   " 25m Projeksiyonları Açılış Modu ",
   " 50m Projeksiyonları Açılış Modu ",
@@ -48,8 +47,7 @@ export const tab2_button_texts_1 = [
   " Atış Evi Projeksiyonları Yeniden Başlat ",
   " Hareketli Platformlarları Projeksiyon Yeniden Başlat ",
 ];
-export const tab2_button_texts_2 = [];
-export const tab2_button_texts_3 = [];
+
 export const bos_satir = (
   <tr style={{ borderTop: "2.5px solid rgb(218, 218, 228)" }}>
     <td></td>

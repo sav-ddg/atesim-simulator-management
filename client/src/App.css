@@ -11,10 +11,10 @@ body {
 }
 
 .App {
-  gap: 0.72em;
+  gap: 0.5em;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -53,7 +53,7 @@ body {
 .table_active {
   table-layout: fixed;
   width: 98vw;
-  height: 60vh;
+  height: 50vh;
   overflow: hidden;
   border-collapse: collapse;
   color: aliceblue;
@@ -61,19 +61,19 @@ body {
 
 .tableContainer {
   width: 99vw;
-  height: 70vh;
+  height: 60vh;
   gap: 1em;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(170, 224, 250, 0.5);
+  background-color: rgba(90, 200, 255, 0.555);
 }
 
 th,
 td {
-  height: 4rem;
+  height: 3rem;
   border: 2.5px solid rgb(218, 218, 228);
   text-align: center;
 }
@@ -89,21 +89,26 @@ tr:nth-child(6) > td,
 tr:nth-child(7) > td {
   border-bottom: 0px;
 }
+
 .gridContainer {
+  width: 100%;
+  height: 21.1em;
+  background: rgb(15, 15, 15);
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
-  height: 14.6em;
-  background-color: black;
 }
-.grid__buttons {
-  color: white;
-  width: 20em;
-  height: 4.6em;
-  border-radius: 5px;
-  background-color: rgb(68, 68, 68);
+
+.gridButtons {
+  width: 300px;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: whitesmoke;
+  background-color: rgb(88, 90, 92);
 }
-.grid__buttons:hover {
-  background-color: rgb(133, 133, 133);
+.gridButtons:hover {
+  background-color: rgb(38, 61, 80);
 }

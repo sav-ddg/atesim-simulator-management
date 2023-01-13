@@ -5,11 +5,7 @@ import {
   rooms,
   bilgisayar_ag,
   tab1_button_texts_1,
-  tab1_button_texts_2,
-  tab1_button_texts_3,
   tab2_button_texts_1,
-  tab2_button_texts_2,
-  tab2_button_texts_3,
   bos_satir,
 } from "./Consts";
 
@@ -17,6 +13,10 @@ function App() {
   const [toggleState, setToggleState] = useState(1);
   const toggleTab = (index) => {
     setToggleState(index);
+    /*const grid = document.getElementsByClassName("grid");
+    for (var i = 0; i < grid.length; i++) {
+      grid[i].remove();
+    }*/
   };
 
   return (
@@ -263,6 +263,11 @@ function App() {
             {bos_satir}
           </tbody>
         </table>
+      </div>
+      <div className="gridContainer">
+        {tab1_button_texts_1.map((val, key) => {
+          return <button className="gridButtons">{val}</button>;
+        })}
       </div>
     </div>
   );
