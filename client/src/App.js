@@ -1,6 +1,5 @@
 import "./App.css";
-import { useState } from "react";
-import Grid from "@mui/material/Grid";
+import { useEffect, useState } from "react";
 import {
   rooms,
   bilgisayar_ag,
@@ -11,6 +10,8 @@ import {
 
 function App() {
   const [toggleState, setToggleState] = useState(1);
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
   const toggleTab = (index) => {
     setToggleState(index);
     /*const grid = document.getElementsByClassName("grid");
@@ -19,10 +20,27 @@ function App() {
     }*/
   };
 
+  const updateTime = () => {
+    let dateArray = Date().split(" ");
+    setDate(dateArray[2] + " " + dateArray[1] + " " + dateArray[3]);
+    setTime(dateArray[4]);
+    setTimeout(updateTime, 1000);
+  };
+  useEffect(() => {
+    updateTime();
+  }, []);
+
   return (
     <div className="App">
       <div className="header">
-        <h7>ATESİM KONTROL PANEL</h7>
+        <img className="img" src="ATESIM_Logo_old.png" alt="img"></img>
+        <div className="baslik">
+          <h7>ATESİM KONTROL PANEL</h7>
+        </div>
+        <div className="dateTime">
+          <h7 className="date">{date}</h7>
+          <h7 className="time">{time}</h7>
+        </div>
       </div>
 
       <div className="tableContainer">
@@ -267,7 +285,12 @@ function App() {
       <div className="gridContainer">
         {tab1_button_texts_1.map((val, key) => {
           return (
-            <button className={toggleState === 1 ? "gridButtons" : "gridbtns"}>
+            <button
+              onClick={() => {
+                console.log(Date());
+              }}
+              className={toggleState === 1 ? "gridButtons" : "gridbtns"}
+            >
               {val}
             </button>
           );
