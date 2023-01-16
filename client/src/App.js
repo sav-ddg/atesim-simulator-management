@@ -2,10 +2,16 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import {
   rooms,
+  rooms_tab_3,
   bilgisayar_ag,
   tab1_button_texts_1,
+  tab1_button_texts_2,
+  tab1_button_texts_3,
   tab2_button_texts_1,
-  bos_satir,
+  tab2_button_texts_2,
+  tab2_button_texts_3,
+  bos_satir_tab_2,
+  bos_satir_tab_3,
 } from "./Consts";
 
 function App() {
@@ -14,10 +20,6 @@ function App() {
   const [date, setDate] = useState("");
   const toggleTab = (index) => {
     setToggleState(index);
-    /*const grid = document.getElementsByClassName("grid");
-    for (var i = 0; i < grid.length; i++) {
-      grid[i].remove();
-    }*/
   };
 
   const updateTime = () => {
@@ -33,7 +35,12 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <img className="img" src="ATESIM_Logo_old.png" alt="img"></img>
+        <img
+          className="img"
+          style={{ width: "250px" }}
+          src="ATESIM_Logo_old.png"
+          alt="img"
+        />
         <div className="baslik">
           <h7>ATESİM KONTROL PANEL</h7>
         </div>
@@ -49,16 +56,26 @@ function App() {
             onClick={() => toggleTab(1)}
             className={toggleState === 1 ? "activeTab" : "tab"}
           >
-            Tab 1
+            Eğitim Alanı Bilgisayarları
           </h1>
           <h1
             onClick={() => toggleTab(2)}
             className={toggleState === 2 ? "activeTab" : "tab"}
           >
-            Tab 2
+            Projeksiyon Kontrolü
+          </h1>
+          <h1
+            onClick={() => toggleTab(3)}
+            className={toggleState === 3 ? "activeTab" : "tab"}
+          >
+            EK / GK / Taktik Plan
           </h1>
         </div>
-        <table className={toggleState === 1 ? "table_active" : "table"}>
+
+        <table
+          id="tab1"
+          className={toggleState === 1 ? "table_active" : "table"}
+        >
           <thead>
             <tr>
               {rooms.map((val, key) => {
@@ -158,7 +175,10 @@ function App() {
             </tr>
           </tbody>
         </table>
-        <table className={toggleState === 2 ? "table_active" : "table"}>
+        <table
+          id="tab2"
+          className={toggleState === 2 ? "table_active" : "table"}
+        >
           <thead>
             <tr>
               {rooms.map((val, key) => {
@@ -172,14 +192,14 @@ function App() {
           </thead>
           <tbody>
             <tr>
-              <td> 25AP1PR1 </td>
-              <td> 25AP1PR2 </td>
-              <td> 25AP2PR1 </td>
-              <td> 25AP2PR2 </td>
-              <td>50AP1PR1</td>
-              <td>50AP1PR2</td>
-              <td>50AP2PR1</td>
-              <td>50AP2PR2</td>
+              <td> AP1PR1 </td>
+              <td> AP1PR2 </td>
+              <td> AP2PR1 </td>
+              <td> AP2PR2 </td>
+              <td>AP1PR1</td>
+              <td>AP1PR2</td>
+              <td>AP2PR1</td>
+              <td>AP2PR2</td>
               <td>OMA1PR1</td>
               <td>OMA1PR2</td>
               <td>OMA1PR3</td>
@@ -197,7 +217,7 @@ function App() {
               <td>HP1PR2</td>
               <td></td>
             </tr>
-            {bos_satir}
+            {bos_satir_tab_2}
             <tr>
               <td></td>
               <td></td>
@@ -224,7 +244,7 @@ function App() {
               <td></td>
               <td></td>
             </tr>
-            {bos_satir}
+            {bos_satir_tab_2}
             <tr>
               <td></td>
               <td></td>
@@ -251,7 +271,7 @@ function App() {
               <td></td>
               <td></td>
             </tr>
-            {bos_satir}
+            {bos_satir_tab_2}
             <tr style={{ borderTop: "2.5px solid rgb(218, 218, 228)" }}>
               <td></td>
               <td></td>
@@ -278,27 +298,158 @@ function App() {
               <td></td>
               <td></td>
             </tr>
-            {bos_satir}
+            {bos_satir_tab_2}
+          </tbody>
+        </table>
+        <table
+          id="tab3"
+          className={toggleState === 3 ? "table_active" : "table"}
+        >
+          <thead>
+            <tr>
+              <th colSpan={4}> Eğitmen Konsolları </th>
+              <th colSpan={3}> Gözetleyici Konsollar </th>
+              <th colSpan={3}> Brifing / Taktik Plan </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {rooms_tab_3.map((val, key) => {
+                return <td key={key}>{val}</td>;
+              })}
+            </tr>
+            {bos_satir_tab_3}
+            {bos_satir_tab_3}
           </tbody>
         </table>
       </div>
       <div className="gridContainer">
         {tab1_button_texts_1.map((val, key) => {
           return (
+            <>
+              <button
+                key={key}
+                className={toggleState === 1 ? "gridButtons" : "gridbtns"}
+              >
+                {val}
+              </button>
+              {/* <hr
+                style={{
+                  width: "4px",
+                  height: "100px",
+                  background: "white",
+                  border: "0px",
+                }}
+              /> */}
+            </>
+          );
+        })}
+        <hr
+          className={toggleState === 1 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {/* <hr style={{ width: "100px" }}></hr> */}
+        {tab1_button_texts_2.map((val, key) => {
+          return (
+            <>
+              <button
+                key={key}
+                className={toggleState === 1 ? "gridButtons" : "gridbtns"}
+              >
+                {val}
+              </button>
+            </>
+          );
+        })}
+        <hr
+          className={toggleState === 1 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {tab1_button_texts_3.map((val, key) => {
+          return (
+            <>
+              <button
+                key={key}
+                className={toggleState === 1 ? "gridButtons" : "gridbtns"}
+              >
+                {val}
+              </button>
+            </>
+          );
+        })}
+        {tab2_button_texts_1.map((val, key) => {
+          return (
             <button
-              onClick={() => {
-                console.log(Date());
-              }}
-              className={toggleState === 1 ? "gridButtons" : "gridbtns"}
+              key={key}
+              className={toggleState === 2 ? "gridButtons" : "gridbtns"}
             >
               {val}
             </button>
           );
         })}
-        {tab2_button_texts_1.map((val, key) => {
+        <hr
+          className={toggleState === 2 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {tab2_button_texts_3.map((val, key) => {
           return (
-            <button className={toggleState === 2 ? "gridButtons" : "gridbtns"}>
+            <button
+              key={key}
+              className={toggleState === 2 ? "gridButtons" : "gridbtns"}
+            >
               {val}
+            </button>
+          );
+        })}
+        <hr
+          className={toggleState === 2 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {tab2_button_texts_3.map((val, key) => {
+          return (
+            <button
+              key={key}
+              className={toggleState === 2 ? "gridButtons" : "gridbtns"}
+            >
+              {val}
+            </button>
+          );
+        })}
+        {rooms_tab_3.map((val, key) => {
+          return (
+            <button
+              key={key}
+              className={toggleState === 3 ? "gridButtonsTab3" : "gridbtns"}
+            >
+              Aç
+            </button>
+          );
+        })}
+        <hr
+          className={toggleState === 3 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {rooms_tab_3.map((val, key) => {
+          return (
+            <button
+              key={key}
+              className={toggleState === 3 ? "gridButtonsTab3" : "gridbtns"}
+            >
+              Kapat
+            </button>
+          );
+        })}
+        <hr
+          className={toggleState === 3 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {rooms_tab_3.map((val, key) => {
+          return (
+            <button
+              key={key}
+              className={toggleState === 3 ? "gridButtonsTab3" : "gridbtns"}
+            >
+              Yeniden Başlat
             </button>
           );
         })}

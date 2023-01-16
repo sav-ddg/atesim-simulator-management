@@ -5,8 +5,8 @@
 }
 
 body {
-  background-size: cover;
-  background: url(../public/ATESIM_Main_Background.png) center;
+  background-size: auto;
+  background: url(../public/ATESIM_Main_Background.png) no-repeat center;
   min-height: 100vh;
 }
 
@@ -24,8 +24,8 @@ body {
   justify-content: space-between;
   color: white;
   width: 100%;
-  height: 2em;
-  background: rgb(39, 37, 37);
+  height: 2.7em;
+  background: rgb(2, 2, 2);
   font-size: 30px;
 }
 .baslik {
@@ -34,9 +34,10 @@ body {
   align-items: center;
 }
 .dateTime {
+  padding-right: 0.3em;
   gap: 0.5em;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
@@ -55,14 +56,17 @@ body {
   justify-content: center;
   width: 50%;
   height: 100%;
+  cursor: pointer;
 }
 .activeTab {
+  color: white;
+  font-size: x-large;
   background-color: rgb(122, 122, 122);
 }
 .tab {
-  font-size: 21px;
-  background-color: rgb(202, 202, 202);
-  color: rgb(184, 184, 184);
+  font-size: 16px;
+  background-color: rgb(59, 59, 59);
+  color: rgba(150, 149, 149, 0.349);
 }
 .table {
   table-layout: fixed;
@@ -87,7 +91,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(90, 200, 255, 0.555);
+  background-color: rgba(90, 90, 90, 0.555);
 }
 
 th,
@@ -96,22 +100,83 @@ td {
   border: 2.5px solid rgb(218, 218, 228);
   text-align: center;
 }
-td {
-  font-size: 15px;
+
+/* th
+  td:nth-child(3)
+  td:nth-child(6)
+  td:nth-child(9)
+  td:nth-child(12)
+  td:nth-child(15)
+  td:nth-child(18) {
+  border-right: 4px solid rgb(218, 218, 228);
+  height: 3rem;
+  border: 2.5px solid rgb(218, 218, 228);
+  text-align: center;
+} */
+
+#tab1 th,
+#tab2 th,
+#tab3 th {
+  border-right: 4px solid rgb(218, 218, 228);
+  border-top: 4px solid rgb(218, 218, 228);
+  border-left: 4px solid rgb(218, 218, 228);
+}
+
+#tab1 td:nth-child(3),
+#tab1 td:nth-child(6),
+#tab1 td:nth-child(9),
+#tab1 td:nth-child(12),
+#tab1 td:nth-child(15),
+#tab1 td:nth-child(18),
+#tab2 td:nth-child(4),
+#tab2 td:nth-child(8),
+#tab2 td:nth-child(12),
+#tab2 td:nth-child(16),
+#tab2 td:nth-child(20),
+#tab2 td:nth-child(24),
+#tab3 td:nth-child(4),
+#tab3 td:nth-child(7),
+#tab3 td:nth-child(10) {
+  border-right: 4px solid rgb(218, 218, 228);
+}
+#tab1 tr:nth-child(1),
+#tab1 tr:nth-child(2),
+#tab1 tr:nth-child(3),
+#tab1 tr:nth-child(4),
+#tab1 tr:nth-child(5),
+#tab2 tr:nth-child(1),
+#tab2 tr:nth-child(2),
+#tab2 tr:nth-child(3),
+#tab2 tr:nth-child(4),
+#tab2 tr:nth-child(5),
+#tab2 tr:nth-child(6),
+#tab2 tr:nth-child(7),
+#tab2 tr:nth-child(8),
+#tab3 tr:nth-child(1),
+#tab3 tr:nth-child(2) {
+  border-left: 4px solid rgb(218, 218, 228);
+}
+#tab1 tr:last-child,
+#tab2 tr:last-child,
+#tab3 tr:last-child {
+  border-bottom: 4px solid rgb(218, 218, 228);
 }
 
 tr:nth-child(8) > td,
 tr:nth-child(7) > td {
   border-top: 0px;
 }
+
 tr:nth-child(6) > td,
 tr:nth-child(7) > td {
   border-bottom: 0px;
 }
 
 .gridContainer {
+  padding-left: 1.7em;
+  padding-right: 1.7em;
   width: 100%;
-  height: 21.1em;
+  height: 19.8em;
   background: rgb(15, 15, 15);
   display: flex;
   flex-direction: row;
@@ -121,16 +186,40 @@ tr:nth-child(7) > td {
 }
 
 .gridButtons {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   width: 300px;
+  white-space: pre-wrap;
   height: 80px;
   border-radius: 10px;
   font-size: 16px;
   color: whitesmoke;
-  background-color: rgb(88, 90, 92);
+  background: linear-gradient(
+    to right,
+    rgb(97, 102, 97) 25px,
+    rgb(41, 42, 44) 20px
+  );
 }
-.gridButtons:hover {
-  background-color: rgb(38, 61, 80);
+.gridButtonsTab3 {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  width: 180px;
+  white-space: pre-wrap;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: whitesmoke;
+  background: linear-gradient(
+    to right,
+    rgb(97, 102, 97) 25px,
+    rgb(41, 42, 44) 20px
+  );
 }
+
 .gridbtns {
+  display: none;
+}
+
+.line {
   display: none;
 }
