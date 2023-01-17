@@ -1,5 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import io from "socket.io-client";
+import Axios from "axios";
 import {
   rooms,
   rooms_tab_3,
@@ -15,21 +17,46 @@ import {
 } from "./Consts";
 
 function App() {
+  // Web Socket Connection
+  const socket = io.connect("http://localhost:3001");
+  const sendMessage_egitim_alani = () => {
+    socket.emit("send_message", {
+      name: "hello",
+      command: "hello command",
+      device: "pc",
+    });
+  };
+
+  // Tab Structure
   const [toggleState, setToggleState] = useState(1);
+
+  // DateTime
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const toggleTab = (index) => {
     setToggleState(index);
   };
-
   const updateTime = () => {
     let dateArray = Date().split(" ");
     setDate(dateArray[2] + " " + dateArray[1] + " " + dateArray[3]);
     setTime(dateArray[4]);
     setTimeout(updateTime, 1000);
   };
+
+  //Fetch Data From http://10.12.100.20:1880/systemstatus
+  const request = () => {
+    Axios.get("http://localhost:1880/request", {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+      mode: "no-cors",
+    }).then((response) => {
+      console.log(response.data.data);
+    });
+  };
+
   useEffect(() => {
     updateTime();
+    sendMessage_egitim_alani();
   }, []);
 
   return (
@@ -46,7 +73,9 @@ function App() {
         </div>
         <div className="dateTime">
           <h7 className="date">{date}</h7>
-          <h7 className="time">{time}</h7>
+          <h7 style={{ paddingRight: "0.5em" }} className="time">
+            {time}
+          </h7>
         </div>
       </div>
 
@@ -391,7 +420,7 @@ function App() {
           className={toggleState === 2 ? "lineActive" : "line"}
           style={{ width: "100%" }}
         />
-        {tab2_button_texts_3.map((val, key) => {
+        {tab2_button_texts_2.map((val, key) => {
           return (
             <button
               key={key}

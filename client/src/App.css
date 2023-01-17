@@ -26,7 +26,8 @@ body {
   width: 100%;
   height: 2.7em;
   background: rgb(2, 2, 2);
-  font-size: 30px;
+  font-size: 33px;
+  font-weight: bold;
 }
 .baslik {
   display: flex;
@@ -34,19 +35,20 @@ body {
   align-items: center;
 }
 .dateTime {
-  padding-right: 0.3em;
+  padding-right: 1em;
   gap: 0.5em;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: large;
 }
 
 .tabs {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid rgb(63, 63, 63);
+  border: 2px solid rgb(255, 255, 255);
   width: 99%;
   height: 50px;
 }
@@ -58,15 +60,21 @@ body {
   height: 100%;
   cursor: pointer;
 }
+.tabs > h1:nth-child(2) {
+  border-left: 3px solid rgb(255, 255, 255);
+  border-right: 3px solid rgb(255, 255, 255);
+}
+
 .activeTab {
   color: white;
-  font-size: x-large;
-  background-color: rgb(122, 122, 122);
+  font-size: xx-large;
+  background: linear-gradient(to bottom, rgb(122, 122, 122), rgb(51, 51, 51));
 }
+
 .tab {
   font-size: 16px;
-  background-color: rgb(59, 59, 59);
-  color: rgba(150, 149, 149, 0.349);
+  background-color: rgba(59, 59, 59, 0.322);
+  color: rgba(150, 149, 149, 0.788);
 }
 .table {
   table-layout: fixed;
@@ -100,19 +108,6 @@ td {
   border: 2.5px solid rgb(218, 218, 228);
   text-align: center;
 }
-
-/* th
-  td:nth-child(3)
-  td:nth-child(6)
-  td:nth-child(9)
-  td:nth-child(12)
-  td:nth-child(15)
-  td:nth-child(18) {
-  border-right: 4px solid rgb(218, 218, 228);
-  height: 3rem;
-  border: 2.5px solid rgb(218, 218, 228);
-  text-align: center;
-} */
 
 #tab1 th,
 #tab2 th,
@@ -173,10 +168,11 @@ tr:nth-child(7) > td {
 }
 
 .gridContainer {
-  padding-left: 1.7em;
-  padding-right: 1.7em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
   width: 100%;
-  height: 19.8em;
+  height: 19.3em;
+  /* For desktop App  height: 22.25em;*/
   background: rgb(15, 15, 15);
   display: flex;
   flex-direction: row;
@@ -188,7 +184,31 @@ tr:nth-child(7) > td {
 .gridButtons {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  width: 300px;
+  width: 18.5em;
+  white-space: pre-wrap;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: whitesmoke;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    rgb(102, 97, 97) 25px,
+    rgb(41, 42, 44) 20px
+  );
+}
+.gridButtons:hover {
+  background: linear-gradient(
+    to right,
+    rgb(221, 27, 27) 25px,
+    rgb(41, 42, 44) 20px
+  );
+}
+.gridButtonsTab3 {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  cursor: pointer;
+  width: 180px;
   white-space: pre-wrap;
   height: 80px;
   border-radius: 10px;
@@ -200,18 +220,10 @@ tr:nth-child(7) > td {
     rgb(41, 42, 44) 20px
   );
 }
-.gridButtonsTab3 {
-  margin-top: 0.4em;
-  margin-bottom: 0.4em;
-  width: 180px;
-  white-space: pre-wrap;
-  height: 80px;
-  border-radius: 10px;
-  font-size: 16px;
-  color: whitesmoke;
+.gridButtonsTab3:hover {
   background: linear-gradient(
     to right,
-    rgb(97, 102, 97) 25px,
+    rgb(221, 27, 27) 25px,
     rgb(41, 42, 44) 20px
   );
 }
