@@ -7,6 +7,9 @@ export const bilgisayar_ag = (
   </>
 );
 export const rooms_tab_3 = [
+  " BS1 ",
+  " BS2 ",
+  " TP ",
   " EK1 ",
   " EK2 ",
   " EK3 ",
@@ -14,9 +17,6 @@ export const rooms_tab_3 = [
   " GK1 ",
   " GK2 ",
   " GK3 ",
-  " BS1 ",
-  " BS2 ",
-  " TP ",
 ];
 export const tab1_button_texts_1 = [
   " 25m Atış Poligonu \n Açılış Modu ",

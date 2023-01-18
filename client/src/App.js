@@ -13,19 +13,18 @@ import {
   tab2_button_texts_2,
   tab2_button_texts_3,
   bos_satir_tab_2,
-  bos_satir_tab_3,
 } from "./Consts";
 
 function App() {
   // Web Socket Connection
-  const socket = io.connect("http://localhost:3001");
-  const sendMessage_egitim_alani = () => {
-    socket.emit("send_message", {
-      name: "hello",
-      command: "hello command",
-      device: "pc",
-    });
-  };
+  // const socket = io.connect("http://localhost:3001");
+  // const sendMessage_egitim_alani = () => {
+  //   socket.emit("send_message", {
+  //     name: "hello",
+  //     command: "hello command",
+  //     device: "pc",
+  //   });
+  // };
 
   // Tab Structure
   const [toggleState, setToggleState] = useState(1);
@@ -33,6 +32,12 @@ function App() {
   // DateTime
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
+
+  // Status
+  var [keys, setKeys] = useState([]);
+  var [value, setValue] = useState([]);
+  var sys = [];
+
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -45,18 +50,54 @@ function App() {
 
   //Fetch Data From http://10.12.100.20:1880/systemstatus
   const request = () => {
-    Axios.get("http://localhost:1880/request", {
+    setTimeout(request, 2000);
+    Axios.get("http://10.12.100.20:1880/systemstatus", {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
       mode: "no-cors",
     }).then((response) => {
-      console.log(response.data.data);
+      sys = response.data.System;
+      Object.values(sys).map((item) => {
+        Object.keys(item).map((val) => {
+          keys.push(val);
+        });
+      });
+      Object.values(sys).map((item) => {
+        Object.values(item).map((val) => {
+          value.push(val);
+        });
+      });
     });
+    console.log(sys);
+  };
+
+  const setStyle = () => {
+    const liste = document.getElementsByTagName("td");
+    for (var i = 0; i < liste.length; i++) {
+      if (
+        liste[i].innerHTML === "Pasif" ||
+        liste[i].innerHTML === "Ağ Pasif" ||
+        liste[i].innerHTML === "Bilgisayar Kapalı"
+      ) {
+        liste[i].style.color = "#ff0000";
+      } else if (
+        liste[i].innerHTML === "Ağ\nAktif" ||
+        liste[i].innerHTML === "Ağ Aktif" ||
+        liste[i].innerHTML === "Bilgisayar\nAktif" ||
+        liste[i].innerHTML === "Bilgisayar Aktif"
+      ) {
+        liste[i].style.color = "#27ff00";
+      }
+    }
+
+    setTimeout(setStyle, 200);
   };
 
   useEffect(() => {
     updateTime();
-    sendMessage_egitim_alani();
+    request();
+    setStyle();
+    //sendMessage_egitim_alani();
   }, []);
 
   return (
@@ -123,44 +164,140 @@ function App() {
               })}
             </tr>
             <tr>
-              <td> 25AP1IG </td>
-              <td></td>
-              <td></td>
+              <td>25AP1IG</td>
+              <td>
+                {value[keys.indexOf("25AP1IG-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("25AP1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>50AP1IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("50AP1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("50AP1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>OMA1IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OMA1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>OKUN1IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OKUN1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>AE1IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("AE1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>HP1IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("HP1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("HP1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
             </tr>
             <tr>
               <td>25AP2IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("25AP2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("25AP2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>50AP2IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("50AP2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("50AP2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>OMA2IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OMA2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>OKUN2IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OKUN2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>AE2IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("AE2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>HP2IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("HP2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("HP2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
             </tr>
             <tr>
               <td></td>
@@ -170,14 +307,38 @@ function App() {
               <td></td>
               <td></td>
               <td>OMA3IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OMA3IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA3IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>OKUN3IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OKUN3IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN3IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>AE3IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("AE3IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE3IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -190,14 +351,38 @@ function App() {
               <td></td>
               <td></td>
               <td>OMA4IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OMA4IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA4IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>OKUN4IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("OKUN4IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN4IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td>AE4IG</td>
-              <td></td>
-              <td></td>
+              <td>
+                {value[keys.indexOf("AE4IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Pasif"}
+              </td>
+              <td style={{}}>
+                {value[keys.indexOf("AE4IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Pasif"}
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -336,9 +521,9 @@ function App() {
         >
           <thead>
             <tr>
+              <th colSpan={3}> Brifing / Taktik Plan </th>
               <th colSpan={4}> Eğitmen Konsolları </th>
               <th colSpan={3}> Gözetleyici Konsollar </th>
-              <th colSpan={3}> Brifing / Taktik Plan </th>
             </tr>
           </thead>
           <tbody>
@@ -347,8 +532,110 @@ function App() {
                 return <td key={key}>{val}</td>;
               })}
             </tr>
-            {bos_satir_tab_3}
-            {bos_satir_tab_3}
+            <tr>
+              <td>
+                {value[keys.indexOf("BS1-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("BS2-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("TP-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK1-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK2-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK3-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK4-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("GK1-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("GK2-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("GK3-State")] === 1
+                  ? "Bilgisayar Aktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {value[keys.indexOf("BS1-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("BS2-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("TP-State")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK1-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK2-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK3-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("EK4-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("GK1-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("GK2-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+              <td>
+                {value[keys.indexOf("GK3-Network")] === 1
+                  ? "Ağ Aktif"
+                  : "Ağ Pasif"}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -357,6 +644,10 @@ function App() {
           return (
             <>
               <button
+                // onClick={() => {
+                //   console.log(systemStatus);
+                //   console.log(networkStatus);
+                // }}
                 key={key}
                 className={toggleState === 1 ? "gridButtons" : "gridbtns"}
               >
