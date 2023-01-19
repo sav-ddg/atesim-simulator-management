@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const rooms = [" 25M ", " 50M ", " OMA ", " OKUN ", " AE ", " HP "];
 export const bilgisayar_ag = (
   <>
@@ -6,6 +8,15 @@ export const bilgisayar_ag = (
     <td> Ağ </td>
   </>
 );
+
+export const bilgisayar_aktif = "Bilgisayar Aktif";
+export const bilgisayar_kapalı = "Bilgisayar Kapalı";
+export const ag_aktif = "Ağ Aktif";
+export const ag_aktif_degil = "Ağ Aktif Değil";
+export const baglanti_hatasi = "Bağlantı Hatası";
+export const projeksiyon_aktif = "Projeksiyon Açık";
+export const projeksiyon_kapali = "Projeksiyon Kapalı";
+
 export const rooms_tab_3 = [
   " BS1 ",
   " BS2 ",
