@@ -42,6 +42,7 @@ export default function LoginPage() {
         <div className="loginButton">
           <button
             onClick={() => {
+              window.close();
               if (userName === userNameAdmin && password === passwordAdmin) {
                 Navigate("/login");
               } else if (
