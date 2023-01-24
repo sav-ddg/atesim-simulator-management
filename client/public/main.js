@@ -7,7 +7,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1920,
     height: 1080,
-    fullscreen: true,
+    fullscreen: false,
     autoHideMenuBar: true,
     icon: __dirname + "./ATESIM_Logo_old.ico",
     closable: true,

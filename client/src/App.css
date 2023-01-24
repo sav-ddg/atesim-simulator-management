@@ -269,7 +269,7 @@ tr:nth-child(7) > td {
 #password {
   height: 100%;
   width: 100%;
-  background-color: rgb(29, 27, 27);
+  background-color: rgb(29, 27, 27) !important;
   color: aliceblue;
   border: 0px;
   border-radius: 3px;
@@ -298,4 +298,75 @@ tr:nth-child(7) > td {
 }
 #loginButton:active {
   background-color: rgb(173, 66, 66);
+}
+
+/*Popup*/
+.alertContainer {
+  width: 25em;
+  height: 15em;
+  background-color: rgb(112, 111, 109);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px solid rgb(255, 1, 1);
+  color: white;
+  animation-name: borderColorChange;
+  animation-duration: 700ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.alertContainer > h3 {
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.alertContainer > button {
+  color: rgb(2, 2, 2);
+  font-weight: 600;
+  width: 13em;
+  height: 3em;
+  background-color: rgba(250, 249, 249, 0.788);
+  border-radius: 3px;
+  border: 0px;
+}
+/* 
+.alertContainer > button:hover {
+  background-color: rgba(255, 254, 254, 0.493);
+} */
+
+@keyframes colorChange {
+  0% {
+    background-color: #bbbab9;
+  }
+  100% {
+    background-color: #878a85;
+  }
+  /* 50% {
+    background-color: #16dad0;
+  }
+  75% {
+    background-color: #d41a82;
+  }
+  100% {
+    background-color: #d41a82;
+  } */
+}
+@keyframes borderColorChange {
+  0% {
+    border-color: #bbbab9;
+  }
+  100% {
+    border-color: #fa0202;
+  }
+  /* 50% {
+    background-color: #16dad0;
+  }
+  75% {
+    background-color: #d41a82;
+  }
+  100% {
+    background-color: #d41a82;
+  } */
 }
