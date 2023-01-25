@@ -1,6 +1,6 @@
 import "../App.css";
 
-export default function AlertPopup(props) {
+export default function LoginAlertPopup(props) {
   return (
     <div className="alertContainer">
       <h3>{props.message}</h3>

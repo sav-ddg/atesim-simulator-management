@@ -5,9 +5,9 @@ const isDev = require("electron-is-dev");
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1920,
-    height: 1080,
-    fullscreen: false,
+    width: 1024,
+    height: 768,
+    fullscreen: true,
     autoHideMenuBar: true,
     icon: __dirname + "./ATESIM_Logo_old.ico",
     closable: true,

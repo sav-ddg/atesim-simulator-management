@@ -1,8 +1,9 @@
 import "../App.css";
 import React, { useState } from "react";
-import AlertPopup from "./AlertPopup";
+import LoginAlertPopup from "./LoginAlertPopup";
 import Dialog from "@mui/material/Dialog";
-import { Routes, Route, Link, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ClosePopup from "./ClosePopup";
 
 export default function LoginPage() {
   const [userName, setUserName] = useState("");
@@ -15,20 +16,45 @@ export default function LoginPage() {
   const passwordUser = "123";
 
   const [alertPopup, setAlertPopup] = React.useState(false);
+  const [closePopup, setClosePopup] = React.useState(false);
   const [message, setMessage] = useState("");
 
-  const handleOpen = (str) => {
+  const handleOpenAlertPage = (str) => {
     setMessage(str);
     setAlertPopup(true);
   };
-  const handleClose = () => {
+  const handleCloseAlertPage = () => {
     setAlertPopup(false);
+  };
+  const handleOpenClosePopup = (str) => {
+    setClosePopup(true);
+  };
+  const handleCloseClosePopup = () => {
+    setClosePopup(false);
   };
 
   const Navigate = useNavigate();
 
   return (
     <>
+      <button
+        className="closeBtnLogin"
+        onClick={() => {
+          setClosePopup(true);
+        }}
+      >
+        <img src="Shutdown.png" />
+      </button>
+      <Dialog
+        style={{ backdropFilter: "blur(3px)" }}
+        open={closePopup}
+        onClose={handleCloseClosePopup}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <ClosePopup close={handleCloseClosePopup} closePopup={setClosePopup} />
+      </Dialog>
+
       <div className="loginContainer">
         <div className="login">
           <div className="userName">
@@ -57,21 +83,22 @@ export default function LoginPage() {
           <div className="loginButton">
             <button
               onClick={() => {
-                //window.close();
                 if (userName === userNameAdmin && password === passwordAdmin) {
                   Navigate("/login");
                 } else if (
                   userName === userNameAdmin &&
                   password !== passwordAdmin
                 ) {
-                  handleOpen("Lütfen Şifrenizi Kontrol Ediniz !!");
+                  handleOpenAlertPage("Lütfen Şifrenizi Kontrol Ediniz !!");
                 } else if (
                   userName !== userNameAdmin &&
                   password === passwordAdmin
                 ) {
-                  handleOpen("Lütfen Kullanıcı Adınızı \n Kontrol Ediniz !!");
+                  handleOpenAlertPage(
+                    "Lütfen Kullanıcı Adınızı \n Kontrol Ediniz !!"
+                  );
                 } else {
-                  handleOpen(
+                  handleOpenAlertPage(
                     "Lütfen Kullanıcı Adınızı ve Şifrenizi \nKontrol Ediniz !!"
                   );
                 }
@@ -86,12 +113,12 @@ export default function LoginPage() {
       <Dialog
         style={{ backdropFilter: "blur(3px)" }}
         open={alertPopup}
-        onClose={handleClose}
+        onClose={handleCloseAlertPage}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <AlertPopup
-          close={handleClose}
+        <LoginAlertPopup
+          close={handleCloseAlertPage}
           alertPopup={setAlertPopup}
           message={message}
         />

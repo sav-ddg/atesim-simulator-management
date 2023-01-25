@@ -37,6 +37,17 @@ body {
   justify-content: center;
   align-items: center;
 }
+.dateTimecloseButton {
+  width: 7em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.closeBtn {
+  background: none;
+  cursor: pointer;
+}
 .dateTime {
   padding-right: 1em;
   gap: 0.5em;
@@ -175,7 +186,7 @@ tr:nth-child(7) > td {
   padding-left: 1.5em;
   padding-right: 1.5em;
   width: 100%;
-  height: 19.3em;
+  height: 22.25em;
   /* For desktop App  height: 22.25em;*/
   background: rgb(15, 15, 15);
   display: flex;
@@ -289,6 +300,7 @@ tr:nth-child(7) > td {
   color: white;
   font-weight: 600;
   font-size: 17px;
+  cursor: pointer;
 }
 #loginButton:hover {
   border: 0em;
@@ -300,11 +312,11 @@ tr:nth-child(7) > td {
   background-color: rgb(173, 66, 66);
 }
 
-/*Popup*/
+/*Alert Popup*/
 .alertContainer {
   width: 25em;
   height: 15em;
-  background-color: rgb(112, 111, 109);
+  background-color: rgb(41, 42, 44);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -323,35 +335,39 @@ tr:nth-child(7) > td {
 }
 
 .alertContainer > button {
-  color: rgb(2, 2, 2);
+  color: rgb(228, 226, 226);
   font-weight: 600;
   width: 13em;
   height: 3em;
-  background-color: rgba(250, 249, 249, 0.788);
+  background-color: rgb(97, 102, 97);
   border-radius: 3px;
   border: 0px;
+  cursor: pointer;
 }
-/* 
-.alertContainer > button:hover {
-  background-color: rgba(255, 254, 254, 0.493);
-} */
+.alertContainer > button:active {
+  background-color: #fa0202;
+}
+
+.closeBtnLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 91%;
+  left: 95.5%;
+  background: none;
+  cursor: pointer;
+  border-style: none;
+  border-radius: 20%;
+}
 
 @keyframes colorChange {
   0% {
-    background-color: #bbbab9;
+    border-color: #bbbab9;
   }
   100% {
-    background-color: #878a85;
+    border-color: #333e9b;
   }
-  /* 50% {
-    background-color: #16dad0;
-  }
-  75% {
-    background-color: #d41a82;
-  }
-  100% {
-    background-color: #d41a82;
-  } */
 }
 @keyframes borderColorChange {
   0% {
@@ -360,13 +376,56 @@ tr:nth-child(7) > td {
   100% {
     border-color: #fa0202;
   }
-  /* 50% {
-    background-color: #16dad0;
-  }
-  75% {
-    background-color: #d41a82;
-  }
-  100% {
-    background-color: #d41a82;
-  } */
+}
+
+/* Logout Popup*/
+.logoutContainer {
+  width: 35em;
+  height: 15em;
+  background-color: rgba(53, 52, 51, 0.918);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px solid rgb(255, 1, 1);
+  color: white;
+  animation-name: colorChange;
+  animation-duration: 700ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.question {
+  white-space: pre-wrap;
+  text-align: center;
+}
+.logoutButtons {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.evetBtn,
+.hayırBtn {
+  color: rgb(228, 226, 226);
+  font-weight: 600;
+  width: 13em;
+  height: 3em;
+  background-color: rgba(100, 92, 92, 0.788);
+  border-radius: 3px;
+  border: 0px;
+  cursor: pointer;
+}
+.evetBtn {
+  border: 0.22em solid rgb(102, 255, 88);
+}
+.hayırBtn {
+  border: 0.22em solid rgb(252, 41, 41);
+}
+.hayırBtn:active {
+  background-color: rgba(112, 18, 18, 0.788);
+}
+.evetBtn:active {
+  background-color: rgb(16, 150, 56);
 }

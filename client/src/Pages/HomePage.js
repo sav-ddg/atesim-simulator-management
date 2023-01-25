@@ -1,7 +1,8 @@
 import "../App.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import Axios from "axios";
+import Dialog from "@mui/material/Dialog";
 import {
   rooms,
   rooms_tab_3,
@@ -20,6 +21,7 @@ import {
   projeksiyon_aktif,
   projeksiyon_kapali,
 } from "../Consts";
+import LogoutPopup from "./LogoutPopup";
 
 export default function HomePage() {
   // Web Socket Connection
@@ -104,7 +106,6 @@ export default function HomePage() {
   //Projections
   var [keysProjections, setKeysProjections] = useState([]);
   var [valueProjections, setValueProjections] = useState([]);
-
   var sys = [];
   var projections = [];
   const toggleTab = (index) => {
@@ -117,9 +118,12 @@ export default function HomePage() {
     setTimeout(updateTime, 1000);
   };
 
+  //Button Popup
+  const [logoutPopup, setLogoutPopup] = React.useState(false);
+
   //Fetch Data From http://10.12.100.20:1880/systemstatus
   const request = () => {
-    Axios.get("http://10.12.100.20:1880/systemstatus", {
+    Axios.get("http://localhost:1880/request", {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
       mode: "no-cors",
@@ -448,7 +452,7 @@ export default function HomePage() {
     const liste = document.getElementsByTagName("td");
     for (var i = 0; i < liste.length; i++) {
       if (
-        liste[i].innerHTML === "Ağ Aktif Değil" ||
+        liste[i].innerHTML === "Ağ Aktif \nDeğil" ||
         liste[i].innerHTML === "Ağ Pasif" ||
         liste[i].innerHTML === "Bilgisayar Kapalı"
       ) {
@@ -463,6 +467,13 @@ export default function HomePage() {
       }
     }
     setTimeout(setStyleTexts, 500);
+  };
+
+  const handleOpen = (str) => {
+    setLogoutPopup(true);
+  };
+  const handleClose = () => {
+    setLogoutPopup(false);
   };
 
   useEffect(() => {
@@ -484,11 +495,29 @@ export default function HomePage() {
         <div className="baslik">
           <h7>ATESİM KONTROL PANEL</h7>
         </div>
-        <div className="dateTime">
-          <h7 className="date">{date}</h7>
-          <h7 style={{ paddingRight: "0.5em" }} className="time">
-            {time}
-          </h7>
+        <div className="dateTimecloseButton">
+          <div className="dateTime">
+            <h7 className="date">{date}</h7>
+            <h7 style={{ paddingRight: "0.6em" }} className="time">
+              {time}
+            </h7>
+          </div>
+          <button
+            onClick={() => {
+              handleOpen();
+            }}
+            className="closeBtn"
+          >
+            <img src="Shutdown.png" />
+          </button>
+          <Dialog
+            open={logoutPopup}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <LogoutPopup close={handleClose} />
+          </Dialog>
         </div>
       </div>
 
@@ -560,7 +589,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("50AP1IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif\nDeğil"}
               </td>
               <td>OMA1IG</td>
               <td>
@@ -571,7 +600,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OMA1IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>OKUN1IG</td>
               <td>
@@ -582,7 +611,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OKUN1IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>AE1IG</td>
               <td>
@@ -593,7 +622,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("AE1IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>HP1IG</td>
               <td>
@@ -604,7 +633,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("HP1IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
             </tr>
             <tr>
@@ -617,7 +646,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("25AP2IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>50AP2IG</td>
               <td>
@@ -628,7 +657,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("50AP2IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>OMA2IG</td>
               <td>
@@ -639,7 +668,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OMA2IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>OKUN2IG</td>
               <td>
@@ -650,7 +679,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OKUN2IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>AE2IG</td>
               <td>
@@ -661,7 +690,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("AE2IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>HP2IG</td>
               <td>
@@ -672,7 +701,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("HP2IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
             </tr>
             <tr>
@@ -691,7 +720,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OMA3IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>OKUN3IG</td>
               <td>
@@ -702,7 +731,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OKUN3IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>AE3IG</td>
               <td>
@@ -713,7 +742,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("AE3IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td></td>
               <td></td>
@@ -735,7 +764,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OMA4IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>OKUN4IG</td>
               <td>
@@ -746,7 +775,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("OKUN4IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>AE4IG</td>
               <td>
@@ -757,7 +786,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("AE4IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td></td>
               <td></td>
@@ -1667,52 +1696,52 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("BS1-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("BS2-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("TP-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("EK1-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("EK2-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("EK3-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("EK4-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("GK1-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("GK2-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>
                 {value[keys.indexOf("GK3-Network")] === 1
                   ? "Ağ Aktif"
-                  : "Ağ Aktif Değil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
             </tr>
           </tbody>
