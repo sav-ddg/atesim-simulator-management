@@ -1,5 +1,5 @@
 import "../App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginAlertPopup from "./LoginAlertPopup";
 import Dialog from "@mui/material/Dialog";
 import { useNavigate } from "react-router-dom";
@@ -26,15 +26,43 @@ export default function LoginPage() {
   const handleCloseAlertPage = () => {
     setAlertPopup(false);
   };
-  const handleOpenClosePopup = (str) => {
-    setClosePopup(true);
-  };
   const handleCloseClosePopup = () => {
     setClosePopup(false);
   };
 
-  const Navigate = useNavigate();
+  const handleForm = () => {
+    if (userName === userNameAdmin && password === passwordAdmin) {
+      Navigate("/login");
+    } else if (userName === userNameAdmin && password !== passwordAdmin) {
+      handleOpenAlertPage("Lütfen Şifrenizi Kontrol Ediniz !!");
+    } else if (userName !== userNameAdmin && password === passwordAdmin) {
+      handleOpenAlertPage("Lütfen Kullanıcı Adınızı \n Kontrol Ediniz !!");
+    } else {
+      handleOpenAlertPage(
+        "Lütfen Kullanıcı Adınızı ve Şifrenizi \nKontrol Ediniz !!"
+      );
+    }
+    if (userName === userNameUser && password === passwordAdmin) {
+      Navigate("/login");
+    } else if (userName === userNameUser && password !== passwordAdmin) {
+      handleOpenAlertPage("Lütfen Şifrenizi Kontrol Ediniz !!");
+    } else if (userName !== userNameUser && password === passwordUser) {
+      handleOpenAlertPage("Lütfen Kullanıcı Adınızı \n Kontrol Ediniz !!");
+    } else {
+      handleOpenAlertPage(
+        "Lütfen Kullanıcı Adınızı ve Şifrenizi \nKontrol Ediniz !!"
+      );
+    }
+  };
 
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      console.log("You pressed Enter");
+      handleForm();
+    }
+  });
+
+  const Navigate = useNavigate();
   return (
     <>
       <button
@@ -82,26 +110,9 @@ export default function LoginPage() {
           </div>
           <div className="loginButton">
             <button
+              type="submit"
               onClick={() => {
-                if (userName === userNameAdmin && password === passwordAdmin) {
-                  Navigate("/login");
-                } else if (
-                  userName === userNameAdmin &&
-                  password !== passwordAdmin
-                ) {
-                  handleOpenAlertPage("Lütfen Şifrenizi Kontrol Ediniz !!");
-                } else if (
-                  userName !== userNameAdmin &&
-                  password === passwordAdmin
-                ) {
-                  handleOpenAlertPage(
-                    "Lütfen Kullanıcı Adınızı \n Kontrol Ediniz !!"
-                  );
-                } else {
-                  handleOpenAlertPage(
-                    "Lütfen Kullanıcı Adınızı ve Şifrenizi \nKontrol Ediniz !!"
-                  );
-                }
+                handleForm();
               }}
               id="loginButton"
             >

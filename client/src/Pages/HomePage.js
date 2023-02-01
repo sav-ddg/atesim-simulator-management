@@ -17,23 +17,12 @@ import {
   bilgisayar_kapalı,
   ag_aktif,
   ag_aktif_degil,
-  baglanti_hatasi,
-  projeksiyon_aktif,
-  projeksiyon_kapali,
+  yeniden_baslat,
+  kapat,
+  aç,
 } from "../Consts";
 import LogoutPopup from "./LogoutPopup";
-
 export default function HomePage() {
-  // Web Socket Connection
-  // const socket = io.connect("http://localhost:3001");
-  // const sendMessage_egitim_alani = () => {
-  //   socket.emit("send_message", {
-  //     name: "hello",
-  //     command: "hello command",
-  //     device: "pc",
-  //   });
-  // };
-
   // Tab Structure
   const [toggleState, setToggleState] = useState(1);
 
@@ -62,8 +51,6 @@ export default function HomePage() {
   var [BS1_network, setBS1_network] = useState(0);
   var [BS2_state, setBS2_state] = useState(0);
   var [BS2_network, setBS2_network] = useState(0);
-  var [BS3_state, setBS3_state] = useState(0);
-  var [BS3_network, setBS3_network] = useState(0);
   var [TP_state, setTP_state] = useState(0);
   var [TP_network, setTP_network] = useState(0);
   var [AP251IG_state, setAP251IG_state] = useState(0);
@@ -103,7 +90,143 @@ export default function HomePage() {
   var [HP2IG_state, setHP2IG_state] = useState(0);
   var [HP2IG_network, setHP2IG_network] = useState(0);
 
+  // Web Socket Connection
+  const [alertPopup, setAlertPopup] = React.useState(false);
+  var command_pccontrol = "";
+  var command_poecontrol = "";
+  var site = "";
+  var hostname = "";
+
+  const handleOpenAlertPopup = () => {
+    setAlertPopup(true);
+  };
+  const handleCloseAlertPopup = () => {
+    setAlertPopup(false);
+  };
+  const sendMessage_egitim_alani_1 = (val) => {
+    console.log(val);
+    if (val === " 25m Atış Poligonu \n Açılış Modu ") {
+      command_pccontrol = "Open";
+      command_poecontrol = "auto";
+      hostname = "25APSW.MGMT.SVRN";
+      site = "25AP";
+    } else if (val === " 50m Atış Poligonu \n Açılış Modu ") {
+      command_pccontrol = "Open";
+      command_poecontrol = "auto";
+      hostname = "50APSW.MGMT.SVRN";
+      site = "50AP";
+    } else if (val === " Ortak Muharebe Odaları \n Açılış Modu ") {
+      command_pccontrol = "Open";
+      command_poecontrol = "auto";
+      hostname = "OMA12.MGMT.SVRN";
+      site = "OMA";
+    } else if (val === " ÖKUN Odaları \n Açılış Modu ") {
+      command_pccontrol = "Open";
+      command_poecontrol = "auto";
+      hostname = "OKUNSW.MGMT.SVRN";
+      site = "OKUN";
+    } else if (val === " Atış Evi \n Açılış Modu ") {
+      command_pccontrol = "Open";
+      command_poecontrol = "auto";
+      hostname = "AE12SW.MGMT.SVRN";
+      site = "AE";
+    } else if (val === " Hareketli Platformlar \n Açılış Modu ") {
+      command_pccontrol = "Open";
+      command_poecontrol = "auto";
+      hostname = "HPLSW.MGMT.SVRN";
+      site = "HP";
+    } else if (val === " 25m Atış Poligonu \n Kapanış Modu ") {
+      command_pccontrol = "Close";
+      command_poecontrol = "never";
+      hostname = "25APSW.MGMT.SVRN";
+      site = "25AP";
+    } else if (val === " 50m Atış Poligonu \n Kapanış Modu ") {
+      command_pccontrol = "Close";
+      command_poecontrol = "never";
+      hostname = "50APSW.MGMT.SVRN";
+      site = "50AP";
+    } else if (val === " Ortak Muharebe Odaları \n Kapanış Modu ") {
+      command_pccontrol = "Close";
+      command_poecontrol = "never";
+      hostname = "OMA12.MGMT.SVRN";
+      site = "OMA";
+    } else if (val === " ÖKUN Odaları \n Kapanış Modu ") {
+      command_pccontrol = "Close";
+      command_poecontrol = "never";
+      hostname = "OKUNSW.MGMT.SVRN";
+      site = "OKUN";
+    } else if (val === " Atış Evi \n Kapanış Modu ") {
+      command_pccontrol = "Close";
+      command_poecontrol = "never";
+      hostname = "AE12SW.MGMT.SVRN";
+      site = "AE";
+    } else if (val === " Hareketli Platformlar \n Kapanış Modu ") {
+      command_pccontrol = "Close";
+      command_poecontrol = "never";
+      hostname = "HPLSW.MGMT.SVRN";
+      site = "HP";
+    } else if (val === " 25m Atış Poligonu \n Yeniden Başlat ") {
+      command_pccontrol = "Restart";
+      command_poecontrol = "auto";
+      hostname = "25APSW.MGMT.SVRN";
+      site = "25AP";
+    } else if (val === " 50m Atış Poligonu \n Yeniden Başlat ") {
+      command_pccontrol = "Restart";
+      command_poecontrol = "auto";
+      hostname = "50APSW.MGMT.SVRN";
+      site = "50AP";
+    } else if (val === " Ortak Muharebe Odaları \n Yeniden Başlat ") {
+      command_pccontrol = "Restart";
+      command_poecontrol = "auto";
+      hostname = "OMA12.MGMT.SVRN";
+      site = "OMA";
+    } else if (val === " ÖKUN Odaları \n Yeniden Başlat ") {
+      command_pccontrol = "Restart";
+      command_poecontrol = "auto";
+      hostname = "OKUNSW.MGMT.SVRN";
+      site = "OKUN";
+    } else if (val === " Atış Evi \n Yeniden Başlat ") {
+      command_pccontrol = "Restart";
+      command_poecontrol = "auto";
+      hostname = "AE12SW.MGMT.SVRN";
+      site = "AE";
+    } else if (val === " Hareketli Platformlar \n Yeniden Başlat ") {
+      command_pccontrol = "Restart";
+      command_poecontrol = "auto";
+      hostname = "HPLSW.MGMT.SVRN";
+      site = "HP";
+    } else {
+    }
+    //const socket_egitim_alani = io.connect("c2c.itm.svrn:1880/pccontrol");
+    const socket_egitim_alani_pccontrol = io.connect(
+      "ws://2.12.100.18:1880/pccontrol"
+    );
+    socket_egitim_alani_pccontrol.emit("send_message", {
+      Command: command_pccontrol,
+      Site: site,
+      CommanderName: "EK5",
+    });
+    //const socket_egitim_alani = io.connect("c2c.itm.svrn:1880/poecontrol");
+    const socket_egitim_alani_poecontrol = io.connect("http://localhost:3001");
+    socket_egitim_alani_poecontrol.emit("send_message", {
+      Site: site,
+      Hostname: hostname,
+      Command: command_poecontrol,
+      CommanderName: "EK5",
+    });
+    //const socket_egitim_alani = io.connect("websocket : c2c.itm.svrn:1880/projectioncontrol");
+    const socket_egitim_alani_projectioncontrol = io.connect(
+      "http://localhost:3001"
+    );
+    socket_egitim_alani_projectioncontrol.emit("send_message", {
+      Command: command_pccontrol,
+      Site: site,
+      CommanderName: "EK5",
+    });
+  };
+
   //Projections
+
   var [keysProjections, setKeysProjections] = useState([]);
   var [valueProjections, setValueProjections] = useState([]);
   var sys = [];
@@ -159,10 +282,6 @@ export default function HomePage() {
         });
       });
       setValueProjections(temp_value_proj);
-      console.log(temp_value_proj);
-
-      console.log(keysProjections);
-      console.log(valueProjections);
       setTimeout(request, 2000);
     });
   };
@@ -469,7 +588,7 @@ export default function HomePage() {
     setTimeout(setStyleTexts, 500);
   };
 
-  const handleOpen = (str) => {
+  const handleOpen = () => {
     setLogoutPopup(true);
   };
   const handleClose = () => {
@@ -480,11 +599,10 @@ export default function HomePage() {
     request();
     setStyleTexts();
     updateTime();
-    //sendMessage_egitim_alani();
   }, []);
 
   return (
-    <div className="App">
+    <div>
       <div className="header">
         <img
           className="img"
@@ -493,12 +611,12 @@ export default function HomePage() {
           alt="img"
         />
         <div className="baslik">
-          <h7>ATESİM KONTROL PANEL</h7>
+          <p>ATESİM KONTROL PANEL</p>
         </div>
         <div className="dateTimecloseButton">
           <div className="dateTime">
             <h7 className="date">{date}</h7>
-            <h7 style={{ paddingRight: "0.6em" }} className="time">
+            <h7 style={{ paddingRight: "0.8em" }} className="time">
               {time}
             </h7>
           </div>
@@ -526,8 +644,6 @@ export default function HomePage() {
           <h1
             onClick={() => {
               toggleTab(1);
-              console.log(keys);
-              console.log(value);
             }}
             className={toggleState === 1 ? "activeTab" : "tab"}
           >
@@ -589,7 +705,7 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("50AP1IG-Network")] === 1
                   ? "Ağ\nAktif"
-                  : "Ağ Aktif\nDeğil"}
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>OMA1IG</td>
               <td>
@@ -816,16 +932,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("25AP1PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("25AP1PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("25AP1PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP1PR1
@@ -835,16 +951,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("25AP1PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("25AP1PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("25AP1PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP1PR2
@@ -856,16 +972,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("50AP1PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("50AP1PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("50AP1PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP1PR1
@@ -875,16 +991,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("50AP1PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("50AP1PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("50AP1PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP1PR2
@@ -896,16 +1012,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA1PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA1PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA1PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA1PR1
@@ -915,16 +1031,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA1PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA1PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA1PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA1PR2
@@ -934,16 +1050,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA1PR3-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA1PR3-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA1PR3-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA1PR3
@@ -954,16 +1070,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OKUN1PR-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN1PR-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN1PR-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OKUN1PR
@@ -975,16 +1091,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE1PR1-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE1PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE1PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE1PR1
@@ -993,16 +1109,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE1PR2-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE1PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE1PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE1PR2
@@ -1014,16 +1130,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("HP1PR-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("HP1PR-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("HP1PR-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 HP1PR
@@ -1032,16 +1148,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("HP2PR-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("HP2PR-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("HP2PR-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 HP2PR
@@ -1055,16 +1171,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("25AP2PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("25AP2PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("25AP2PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP2PR1
@@ -1074,16 +1190,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("25AP2PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("25AP2PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("25AP2PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP2PR2
@@ -1095,16 +1211,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("50AP2PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("50AP2PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("50AP2PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP2PR1
@@ -1114,16 +1230,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("50AP2PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("50AP2PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("50AP2PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AP2PR2
@@ -1135,16 +1251,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA2PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA2PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA2PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA2PR1
@@ -1154,16 +1270,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA2PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA2PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA2PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA2PR2
@@ -1173,16 +1289,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA2PR3-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA2PR3-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA2PR3-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA2PR3
@@ -1193,16 +1309,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OKUN2PR-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN2PR-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN2PR-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OKUN2PR
@@ -1214,16 +1330,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE2PR1-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE2PR1
@@ -1232,16 +1348,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE2PR2-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE2PR2
@@ -1250,16 +1366,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE2PR3-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR3-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR3-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE2PR3
@@ -1268,16 +1384,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE2PR4-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR4-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE2PR4-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE2PR4
@@ -1302,16 +1418,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA3PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA3PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA3PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA3PR1
@@ -1321,16 +1437,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA3PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA3PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA3PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA3PR2
@@ -1340,16 +1456,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA3PR3-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA3PR3-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA3PR3-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA3PR3
@@ -1360,16 +1476,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OKUN3PR-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN3PR-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN3PR-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OKUN3PR
@@ -1381,16 +1497,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE3PR1-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE3PR1
@@ -1399,16 +1515,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE3PR2-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE3PR2
@@ -1417,16 +1533,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE3PR3-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR3-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR3-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE3PR3
@@ -1435,16 +1551,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE3PR4-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR4-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE3PR4-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE3PR4
@@ -1469,16 +1585,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA4PR1-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA4PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA4PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA4PR1
@@ -1488,16 +1604,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA4PR2-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA4PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA4PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA4PR2
@@ -1507,16 +1623,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OMA4PR3-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OMA4PR3-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OMA4PR3-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OMA4PR3
@@ -1527,16 +1643,16 @@ export default function HomePage() {
                   valueProjections[
                     keysProjections.indexOf("OKUN4PR-Status")
                   ] === 4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN4PR-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("OKUN4PR-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 OKUN4PR
@@ -1548,16 +1664,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE4PR1-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR1-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR1-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE4PR1
@@ -1566,16 +1682,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE4PR2-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR2-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR2-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE4PR2
@@ -1584,16 +1700,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE4PR3-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR3-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR3-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE4PR3
@@ -1602,16 +1718,16 @@ export default function HomePage() {
                 style={
                   valueProjections[keysProjections.indexOf("AE4PR4-Status")] ===
                   4
-                    ? { backgroundColor: "red" }
+                    ? { backgroundColor: "#cf2323" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR4-Status")
                       ] === 16
-                    ? { backgroundColor: "green" }
+                    ? { backgroundColor: "#39ad39" }
                     : valueProjections[
                         keysProjections.indexOf("AE4PR4-Status")
                       ] === 1
-                    ? { backgroundColor: "gray" }
-                    : { backgroundColor: "pink" }
+                    ? { backgroundColor: "#6b6b6b" }
+                    : { backgroundColor: "#889147" }
                 }
               >
                 AE4PR4
@@ -1752,23 +1868,14 @@ export default function HomePage() {
           return (
             <>
               <button
-                // onClick={() => {
-                //   console.log(systemStatus);
-                //   console.log(networkStatus);
-                // }}
+                onClick={() => {
+                  sendMessage_egitim_alani_1(val);
+                }}
                 key={key}
                 className={toggleState === 1 ? "gridButtons" : "gridbtns"}
               >
                 {val}
               </button>
-              {/* <hr
-                style={{
-                  width: "4px",
-                  height: "100px",
-                  background: "white",
-                  border: "0px",
-                }}
-              /> */}
             </>
           );
         })}
@@ -1776,11 +1883,13 @@ export default function HomePage() {
           className={toggleState === 1 ? "lineActive" : "line"}
           style={{ width: "100%" }}
         />
-        {/* <hr style={{ width: "100px" }}></hr> */}
         {tab1_button_texts_2.map((val, key) => {
           return (
             <>
               <button
+                onClick={() => {
+                  sendMessage_egitim_alani_1(val);
+                }}
                 key={key}
                 className={toggleState === 1 ? "gridButtons" : "gridbtns"}
               >
@@ -1797,6 +1906,9 @@ export default function HomePage() {
           return (
             <>
               <button
+                onClick={() => {
+                  sendMessage_egitim_alani_1(val);
+                }}
                 key={key}
                 className={toggleState === 1 ? "gridButtons" : "gridbtns"}
               >
@@ -1849,7 +1961,7 @@ export default function HomePage() {
               key={key}
               className={toggleState === 3 ? "gridButtonsTab3" : "gridbtns"}
             >
-              Aç
+              {aç}
             </button>
           );
         })}
@@ -1863,7 +1975,7 @@ export default function HomePage() {
               key={key}
               className={toggleState === 3 ? "gridButtonsTab3" : "gridbtns"}
             >
-              Kapat
+              {kapat}
             </button>
           );
         })}
@@ -1877,7 +1989,7 @@ export default function HomePage() {
               key={key}
               className={toggleState === 3 ? "gridButtonsTab3" : "gridbtns"}
             >
-              Yeniden Başlat
+              {yeniden_baslat}
             </button>
           );
         })}

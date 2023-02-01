@@ -8,7 +8,9 @@ export const bilgisayar_ag = (
     <td> Ağ </td>
   </>
 );
-
+export const aç = "Aç";
+export const kapat = "Kapat";
+export const yeniden_baslat = "Yeniden\n Başlat";
 export const bilgisayar_aktif = "Bilgisayar Aktif";
 export const bilgisayar_kapalı = "Bilgisayar Kapalı";
 export const ag_aktif = "Ağ Aktif";

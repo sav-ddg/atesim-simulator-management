@@ -11,6 +11,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Lora", serif;
 }
 
 .App {
@@ -27,12 +28,14 @@ body {
   justify-content: space-between;
   color: white;
   width: 100%;
-  height: 2.7em;
+  height: 3em;
   background: rgb(2, 2, 2);
   font-size: 33px;
   font-weight: bold;
 }
 .baslik {
+  background: rgb(2, 2, 2);
+  font-family: "Lora", serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +52,7 @@ body {
   cursor: pointer;
 }
 .dateTime {
+  font-family: "Chivo Mono", monospace;
   padding-right: 1em;
   gap: 0.5em;
   display: flex;
@@ -94,7 +98,6 @@ body {
   table-layout: fixed;
   display: none;
 }
-
 .table_active {
   table-layout: fixed;
   width: 98vw;
@@ -186,7 +189,7 @@ tr:nth-child(7) > td {
   padding-left: 1.5em;
   padding-right: 1.5em;
   width: 100%;
-  height: 22.25em;
+  height: 22.66em;
   /* For desktop App  height: 22.25em;*/
   background: rgb(15, 15, 15);
   display: flex;
@@ -203,6 +206,7 @@ tr:nth-child(7) > td {
   white-space: pre-wrap;
   height: 80px;
   border-radius: 10px;
+  font-family: "Lora", serif;
   font-size: 16px;
   color: whitesmoke;
   cursor: pointer;
@@ -212,6 +216,7 @@ tr:nth-child(7) > td {
     rgb(41, 42, 44) 20px
   );
 }
+
 .gridButtons:hover {
   background: linear-gradient(
     to right,
@@ -220,10 +225,11 @@ tr:nth-child(7) > td {
   );
 }
 .gridButtonsTab3 {
+  font-family: "Lora", serif;
   margin-top: 0.4em;
   margin-bottom: 0.4em;
   cursor: pointer;
-  width: 180px;
+  width: 11em;
   white-space: pre-wrap;
   height: 80px;
   border-radius: 10px;
@@ -235,6 +241,7 @@ tr:nth-child(7) > td {
     rgb(41, 42, 44) 20px
   );
 }
+
 .gridButtonsTab3:hover {
   background: linear-gradient(
     to right,
@@ -288,8 +295,13 @@ tr:nth-child(7) > td {
 }
 #userName::placeholder,
 #password::placeholder {
-  color: rgb(231, 219, 219);
+  color: rgb(250, 250, 250);
   font-size: 15px;
+}
+#userName:focus,
+#password:focus {
+  outline-color: rgb(255, 255, 255);
+  outline: invert;
 }
 #loginButton {
   height: 100%;
@@ -349,9 +361,6 @@ tr:nth-child(7) > td {
 }
 
 .closeBtnLogin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   top: 91%;
   left: 95.5%;
@@ -382,7 +391,7 @@ tr:nth-child(7) > td {
 .logoutContainer {
   width: 35em;
   height: 15em;
-  background-color: rgba(53, 52, 51, 0.918);
+  background-color: rgb(41, 42, 44);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -424,8 +433,121 @@ tr:nth-child(7) > td {
   border: 0.22em solid rgb(252, 41, 41);
 }
 .hayırBtn:active {
-  background-color: rgba(112, 18, 18, 0.788);
+  background-color: rgb(167, 29, 29);
 }
 .evetBtn:active {
   background-color: rgb(16, 150, 56);
+}
+
+/*MEDIA QUERIES FOR GRID*/
+@media screen and (max-width: 1850px) {
+  .gridButtons {
+    width: 16em;
+  }
+}
+@media screen and (max-width: 1700px) {
+  .gridButtons {
+    width: 14.9em;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .gridButtons {
+    width: 13.5em;
+  }
+}
+@media screen and (max-width: 1360px) {
+  .gridButtons {
+    width: 11.9em;
+  }
+}
+@media screen and (max-width: 1190px) {
+  .gridButtons {
+    width: 10.25em;
+  }
+}
+@media screen and (max-width: 1127px) {
+  .gridButtons {
+    width: 9em;
+  }
+}
+/*MEDIA QUERIES FOR GRIDTAB3*/
+
+@media screen and (max-width: 1807px) {
+  .gridButtonsTab3 {
+    width: 9.99em;
+  }
+}
+@media screen and (max-width: 1646px) {
+  .gridButtonsTab3 {
+    width: 9.09em;
+  }
+}
+@media screen and (max-width: 1502px) {
+  .gridButtonsTab3 {
+    width: 8.27em;
+  }
+}
+@media screen and (max-width: 1371px) {
+  .gridButtonsTab3 {
+    width: 7.52em;
+  }
+}
+@media screen and (max-width: 1251px) {
+  .gridButtonsTab3 {
+    width: 6.84em;
+  }
+}
+@media screen and (max-width: 1142px) {
+  .gridButtonsTab3 {
+    width: 6.22em;
+  }
+}
+@media screen and (max-width: 1043px) {
+  .gridButtonsTab3 {
+    width: 5.66em;
+  }
+}
+@media screen and (max-width: 1919px) {
+  hr {
+    display: none;
+  }
+}
+
+/*MEDIA QUERIES FOR TABS */
+@media screen and (max-width: 1366px) {
+  .activeTab {
+    font-size: large;
+  }
+}
+/*MEDIA QUERIES FOR CLOSE BUTTON */
+@media screen and (max-width: 1920px) {
+  .closeBtnLogin {
+    top: 92%;
+    left: 95.4%;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .closeBtnLogin {
+    top: 90%;
+    left: 94%;
+  }
+}
+@media screen and (max-width: 1360px) {
+  .closeBtnLogin {
+    top: 88%;
+    left: 93%;
+  }
+}
+@media screen and (width: 1280px) {
+  .closeBtnLogin {
+    top: 8%;
+    left: 93%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .closeBtnLogin {
+    top: 88%;
+    left: 91.2%;
+  }
 }

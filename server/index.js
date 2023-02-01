@@ -16,16 +16,24 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  //console.log(` User Connected: ${socket.id}`);
-
   //Web Socket Connection
   socket.on("send_message", (data) => {
     console.log(data);
-
     //To broadcast other users
     //socket.broadcast.emit("receive_message", data);
   });
 });
+
+// const interval = setInterval(() => {
+//   wss.clients.forEach((ws) => {
+//      if (ws.isAlive === false) {
+//           return ws.terminate()
+//       }
+
+//       ws.isAlive = false
+//       ws.ping(() => { ping(ws) })
+//   })
+// }, 30000)
 
 server.listen(3001, () => {
   console.log("SERVER IS RUNNING");
