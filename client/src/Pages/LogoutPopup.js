@@ -7,7 +7,7 @@ export default function LogoutPopup(props) {
   return (
     <div className="logoutContainer">
       <div className="question">
-        <h1>{question}</h1>
+        <p>{question}</p>
       </div>
       <div className="logoutButtons">
         <button

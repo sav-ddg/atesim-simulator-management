@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import Axios from "axios";
 import Dialog from "@mui/material/Dialog";
+import WarningPopup from "./WarningPopup";
 import {
   rooms,
   rooms_tab_3,
@@ -23,6 +24,8 @@ import {
 } from "../Consts";
 import LogoutPopup from "./LogoutPopup";
 export default function HomePage() {
+  const [warningPopup, setWarningPopup] = React.useState(false);
+  const [str, setStr] = useState("");
   // Tab Structure
   const [toggleState, setToggleState] = useState(1);
 
@@ -89,141 +92,6 @@ export default function HomePage() {
   var [HP1IG_network, setHP1IG_network] = useState(0);
   var [HP2IG_state, setHP2IG_state] = useState(0);
   var [HP2IG_network, setHP2IG_network] = useState(0);
-
-  // Web Socket Connection
-  const [alertPopup, setAlertPopup] = React.useState(false);
-  var command_pccontrol = "";
-  var command_poecontrol = "";
-  var site = "";
-  var hostname = "";
-
-  const handleOpenAlertPopup = () => {
-    setAlertPopup(true);
-  };
-  const handleCloseAlertPopup = () => {
-    setAlertPopup(false);
-  };
-  const sendMessage_egitim_alani_1 = (val) => {
-    console.log(val);
-    if (val === " 25m Atış Poligonu \n Açılış Modu ") {
-      command_pccontrol = "Open";
-      command_poecontrol = "auto";
-      hostname = "25APSW.MGMT.SVRN";
-      site = "25AP";
-    } else if (val === " 50m Atış Poligonu \n Açılış Modu ") {
-      command_pccontrol = "Open";
-      command_poecontrol = "auto";
-      hostname = "50APSW.MGMT.SVRN";
-      site = "50AP";
-    } else if (val === " Ortak Muharebe Odaları \n Açılış Modu ") {
-      command_pccontrol = "Open";
-      command_poecontrol = "auto";
-      hostname = "OMA12.MGMT.SVRN";
-      site = "OMA";
-    } else if (val === " ÖKUN Odaları \n Açılış Modu ") {
-      command_pccontrol = "Open";
-      command_poecontrol = "auto";
-      hostname = "OKUNSW.MGMT.SVRN";
-      site = "OKUN";
-    } else if (val === " Atış Evi \n Açılış Modu ") {
-      command_pccontrol = "Open";
-      command_poecontrol = "auto";
-      hostname = "AE12SW.MGMT.SVRN";
-      site = "AE";
-    } else if (val === " Hareketli Platformlar \n Açılış Modu ") {
-      command_pccontrol = "Open";
-      command_poecontrol = "auto";
-      hostname = "HPLSW.MGMT.SVRN";
-      site = "HP";
-    } else if (val === " 25m Atış Poligonu \n Kapanış Modu ") {
-      command_pccontrol = "Close";
-      command_poecontrol = "never";
-      hostname = "25APSW.MGMT.SVRN";
-      site = "25AP";
-    } else if (val === " 50m Atış Poligonu \n Kapanış Modu ") {
-      command_pccontrol = "Close";
-      command_poecontrol = "never";
-      hostname = "50APSW.MGMT.SVRN";
-      site = "50AP";
-    } else if (val === " Ortak Muharebe Odaları \n Kapanış Modu ") {
-      command_pccontrol = "Close";
-      command_poecontrol = "never";
-      hostname = "OMA12.MGMT.SVRN";
-      site = "OMA";
-    } else if (val === " ÖKUN Odaları \n Kapanış Modu ") {
-      command_pccontrol = "Close";
-      command_poecontrol = "never";
-      hostname = "OKUNSW.MGMT.SVRN";
-      site = "OKUN";
-    } else if (val === " Atış Evi \n Kapanış Modu ") {
-      command_pccontrol = "Close";
-      command_poecontrol = "never";
-      hostname = "AE12SW.MGMT.SVRN";
-      site = "AE";
-    } else if (val === " Hareketli Platformlar \n Kapanış Modu ") {
-      command_pccontrol = "Close";
-      command_poecontrol = "never";
-      hostname = "HPLSW.MGMT.SVRN";
-      site = "HP";
-    } else if (val === " 25m Atış Poligonu \n Yeniden Başlat ") {
-      command_pccontrol = "Restart";
-      command_poecontrol = "auto";
-      hostname = "25APSW.MGMT.SVRN";
-      site = "25AP";
-    } else if (val === " 50m Atış Poligonu \n Yeniden Başlat ") {
-      command_pccontrol = "Restart";
-      command_poecontrol = "auto";
-      hostname = "50APSW.MGMT.SVRN";
-      site = "50AP";
-    } else if (val === " Ortak Muharebe Odaları \n Yeniden Başlat ") {
-      command_pccontrol = "Restart";
-      command_poecontrol = "auto";
-      hostname = "OMA12.MGMT.SVRN";
-      site = "OMA";
-    } else if (val === " ÖKUN Odaları \n Yeniden Başlat ") {
-      command_pccontrol = "Restart";
-      command_poecontrol = "auto";
-      hostname = "OKUNSW.MGMT.SVRN";
-      site = "OKUN";
-    } else if (val === " Atış Evi \n Yeniden Başlat ") {
-      command_pccontrol = "Restart";
-      command_poecontrol = "auto";
-      hostname = "AE12SW.MGMT.SVRN";
-      site = "AE";
-    } else if (val === " Hareketli Platformlar \n Yeniden Başlat ") {
-      command_pccontrol = "Restart";
-      command_poecontrol = "auto";
-      hostname = "HPLSW.MGMT.SVRN";
-      site = "HP";
-    } else {
-    }
-    //const socket_egitim_alani = io.connect("c2c.itm.svrn:1880/pccontrol");
-    const socket_egitim_alani_pccontrol = io.connect(
-      "ws://2.12.100.18:1880/pccontrol"
-    );
-    socket_egitim_alani_pccontrol.emit("send_message", {
-      Command: command_pccontrol,
-      Site: site,
-      CommanderName: "EK5",
-    });
-    //const socket_egitim_alani = io.connect("c2c.itm.svrn:1880/poecontrol");
-    const socket_egitim_alani_poecontrol = io.connect("http://localhost:3001");
-    socket_egitim_alani_poecontrol.emit("send_message", {
-      Site: site,
-      Hostname: hostname,
-      Command: command_poecontrol,
-      CommanderName: "EK5",
-    });
-    //const socket_egitim_alani = io.connect("websocket : c2c.itm.svrn:1880/projectioncontrol");
-    const socket_egitim_alani_projectioncontrol = io.connect(
-      "http://localhost:3001"
-    );
-    socket_egitim_alani_projectioncontrol.emit("send_message", {
-      Command: command_pccontrol,
-      Site: site,
-      CommanderName: "EK5",
-    });
-  };
 
   //Projections
 
@@ -1866,19 +1734,24 @@ export default function HomePage() {
       <div className="gridContainer">
         {tab1_button_texts_1.map((val, key) => {
           return (
-            <>
-              <button
-                onClick={() => {
-                  sendMessage_egitim_alani_1(val);
-                }}
-                key={key}
-                className={toggleState === 1 ? "gridButtons" : "gridbtns"}
-              >
-                {val}
-              </button>
-            </>
+            <button
+              onClick={() => {
+                setStr(val);
+                setWarningPopup(true);
+              }}
+              key={key}
+              className={toggleState === 1 ? "gridButtons" : "gridbtns"}
+            >
+              {val}
+            </button>
           );
         })}
+
+        <WarningPopup
+          open={warningPopup}
+          str={str}
+          close={() => setWarningPopup(false)}
+        />
         <hr
           className={toggleState === 1 ? "lineActive" : "line"}
           style={{ width: "100%" }}
@@ -1888,7 +1761,8 @@ export default function HomePage() {
             <>
               <button
                 onClick={() => {
-                  sendMessage_egitim_alani_1(val);
+                  setStr(val);
+                  setWarningPopup(true);
                 }}
                 key={key}
                 className={toggleState === 1 ? "gridButtons" : "gridbtns"}
@@ -1898,6 +1772,7 @@ export default function HomePage() {
             </>
           );
         })}
+
         <hr
           className={toggleState === 1 ? "lineActive" : "line"}
           style={{ width: "100%" }}
@@ -1907,7 +1782,8 @@ export default function HomePage() {
             <>
               <button
                 onClick={() => {
-                  sendMessage_egitim_alani_1(val);
+                  setStr(val);
+                  setWarningPopup(true);
                 }}
                 key={key}
                 className={toggleState === 1 ? "gridButtons" : "gridbtns"}
@@ -1917,6 +1793,7 @@ export default function HomePage() {
             </>
           );
         })}
+
         {tab2_button_texts_1.map((val, key) => {
           return (
             <button

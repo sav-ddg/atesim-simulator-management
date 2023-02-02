@@ -405,8 +405,12 @@ tr:nth-child(7) > td {
 }
 
 .question {
+  display: flex;
   white-space: pre-wrap;
   text-align: center;
+}
+.question > p {
+  font-size: x-large;
 }
 .logoutButtons {
   width: 80%;
@@ -437,6 +441,29 @@ tr:nth-child(7) > td {
 }
 .evetBtn:active {
   background-color: rgb(16, 150, 56);
+}
+
+/*Warning Popup*/
+.warningContainer {
+  width: 60em;
+  height: 17em;
+  background-color: rgb(41, 42, 44);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 2px solid rgb(255, 1, 1);
+  color: white;
+  animation-name: colorChange;
+  animation-duration: 700ms;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.question > img {
+  position: absolute;
+  right: 51em;
+  top: 1em;
 }
 
 /*MEDIA QUERIES FOR GRID*/
