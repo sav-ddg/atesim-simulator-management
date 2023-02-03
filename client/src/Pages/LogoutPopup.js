@@ -1,10 +1,8 @@
 import "../App.css";
-import { useNavigate } from "react-router-dom";
 import { Dialog } from "@mui/material";
 
 const LogoutPopup = ({ open, close }) => {
-  const Navigate = useNavigate();
-  const question = "Oturumu Sonlandırmak İstediğinize\n Emin Misiniz ?";
+  const question = "Yazılımı Kapatmak İstediğinize\n Emin Misiniz ?";
   return (
     <Dialog
       open={open}
@@ -20,7 +18,7 @@ const LogoutPopup = ({ open, close }) => {
           <button
             className="evetBtn"
             onClick={() => {
-              Navigate("/");
+              window.close();
             }}
           >
             EVET

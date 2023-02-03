@@ -31,6 +31,26 @@ export const rooms_tab_3 = [
   " GK2 ",
   " GK3 ",
 ];
+export const rooms_tab_4 = [
+  " 25AP1IG ",
+  " 25AP2IG ",
+  " 50AP1IG ",
+  " 50AP2IG ",
+  " OMA1IG ",
+  " OMA2IG ",
+  " OMA3IG ",
+  " OMA4IG ",
+  " OKUN1IG ",
+  " OKUN2IG ",
+  " OKUN3IG ",
+  " OKUN4IG ",
+  " AE1IG ",
+  " AE2IG ",
+  " AE3IG ",
+  " AE4IG ",
+  " HP1IG ",
+  " HP2IG ",
+];
 export const tab1_button_texts_1 = [
   " 25m Atış Poligonu \n Açılış Modu ",
   " 50m Atış Poligonu \n Açılış Modu ",

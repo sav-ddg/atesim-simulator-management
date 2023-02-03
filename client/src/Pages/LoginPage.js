@@ -1,9 +1,7 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import LoginAlertPopup from "./LoginAlertPopup";
-import Dialog from "@mui/material/Dialog";
 import { useNavigate } from "react-router-dom";
-import ClosePopup from "./ClosePopup";
 
 export default function LoginPage() {
   const [userName, setUserName] = useState("");
@@ -16,20 +14,12 @@ export default function LoginPage() {
   const passwordUser = "123";
 
   const [alertPopup, setAlertPopup] = React.useState(false);
-  const [closePopup, setClosePopup] = React.useState(false);
   const [message, setMessage] = useState("");
 
   const handleOpenAlertPage = (str) => {
     setMessage(str);
     setAlertPopup(true);
   };
-  const handleCloseAlertPage = () => {
-    setAlertPopup(false);
-  };
-  const handleCloseClosePopup = () => {
-    setClosePopup(false);
-  };
-
   const handleForm = () => {
     if (userName === userNameAdmin && password === passwordAdmin) {
       Navigate("/login");
@@ -65,21 +55,6 @@ export default function LoginPage() {
   const Navigate = useNavigate();
   return (
     <>
-      <button
-        className="closeBtnLogin"
-        onClick={() => {
-          setClosePopup(true);
-        }}
-      >
-        <img src="Shutdown.png" />
-      </button>
-
-      <ClosePopup
-        open={closePopup}
-        close={() => setClosePopup(false)}
-        message={message}
-      />
-
       <div className="loginContainer">
         <div className="login">
           <div className="userName">

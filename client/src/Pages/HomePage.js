@@ -7,6 +7,7 @@ import WarningPopup from "./WarningPopup";
 import {
   rooms,
   rooms_tab_3,
+  rooms_tab_4,
   bilgisayar_ag,
   tab1_button_texts_1,
   tab1_button_texts_2,
@@ -528,6 +529,12 @@ export default function HomePage() {
           >
             EK / GK / Taktik Plan
           </h1>
+          <h1
+            onClick={() => toggleTab(4)}
+            className={toggleState === 4 ? "activeTab" : "tab"}
+          >
+            Sistem Durum Ekranı
+          </h1>
         </div>
 
         <table
@@ -560,8 +567,8 @@ export default function HomePage() {
               </td>
               <td>
                 {value[keys.indexOf("25AP1IG-Network")] === 1
-                  ? "Bilgisayar\nAktif"
-                  : "Bilgisayar Kapalı"}
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
               </td>
               <td>50AP1IG</td>
               <td>
@@ -804,11 +811,7 @@ export default function HomePage() {
                         keysProjections.indexOf("25AP1PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("25AP1PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP1PR1
@@ -823,11 +826,7 @@ export default function HomePage() {
                         keysProjections.indexOf("25AP1PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("25AP1PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP1PR2
@@ -844,11 +843,7 @@ export default function HomePage() {
                         keysProjections.indexOf("50AP1PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("50AP1PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP1PR1
@@ -863,11 +858,7 @@ export default function HomePage() {
                         keysProjections.indexOf("50AP1PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("50AP1PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP1PR2
@@ -884,11 +875,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA1PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA1PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA1PR1
@@ -903,11 +890,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA1PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA1PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA1PR2
@@ -922,11 +905,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA1PR3-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA1PR3-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA1PR3
@@ -942,11 +921,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OKUN1PR-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OKUN1PR-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OKUN1PR
@@ -963,11 +938,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE1PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE1PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE1PR1
@@ -981,11 +952,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE1PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE1PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE1PR2
@@ -1002,11 +969,7 @@ export default function HomePage() {
                         keysProjections.indexOf("HP1PR-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("HP1PR-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 HP1PR
@@ -1020,11 +983,7 @@ export default function HomePage() {
                         keysProjections.indexOf("HP2PR-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("HP2PR-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 HP2PR
@@ -1043,11 +1002,7 @@ export default function HomePage() {
                         keysProjections.indexOf("25AP2PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("25AP2PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP2PR1
@@ -1062,11 +1017,7 @@ export default function HomePage() {
                         keysProjections.indexOf("25AP2PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("25AP2PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP2PR2
@@ -1083,11 +1034,7 @@ export default function HomePage() {
                         keysProjections.indexOf("50AP2PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("50AP2PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP2PR1
@@ -1102,11 +1049,7 @@ export default function HomePage() {
                         keysProjections.indexOf("50AP2PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("50AP2PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AP2PR2
@@ -1123,11 +1066,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA2PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA2PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA2PR1
@@ -1142,11 +1081,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA2PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA2PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA2PR2
@@ -1161,11 +1096,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA2PR3-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA2PR3-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA2PR3
@@ -1181,11 +1112,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OKUN2PR-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OKUN2PR-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OKUN2PR
@@ -1202,11 +1129,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE2PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE2PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE2PR1
@@ -1220,11 +1143,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE2PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE2PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE2PR2
@@ -1238,11 +1157,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE2PR3-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE2PR3-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE2PR3
@@ -1256,11 +1171,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE2PR4-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE2PR4-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE2PR4
@@ -1290,11 +1201,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA3PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA3PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA3PR1
@@ -1309,11 +1216,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA3PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA3PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA3PR2
@@ -1328,11 +1231,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA3PR3-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA3PR3-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA3PR3
@@ -1348,11 +1247,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OKUN3PR-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OKUN3PR-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OKUN3PR
@@ -1369,11 +1264,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE3PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE3PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE3PR1
@@ -1387,11 +1278,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE3PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE3PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE3PR2
@@ -1405,11 +1292,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE3PR3-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE3PR3-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE3PR3
@@ -1423,11 +1306,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE3PR4-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE3PR4-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE3PR4
@@ -1457,11 +1336,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA4PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA4PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA4PR1
@@ -1476,11 +1351,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA4PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA4PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA4PR2
@@ -1495,11 +1366,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OMA4PR3-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OMA4PR3-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OMA4PR3
@@ -1515,11 +1382,7 @@ export default function HomePage() {
                         keysProjections.indexOf("OKUN4PR-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("OKUN4PR-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 OKUN4PR
@@ -1536,11 +1399,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE4PR1-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE4PR1-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE4PR1
@@ -1554,11 +1413,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE4PR2-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE4PR2-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE4PR2
@@ -1572,11 +1427,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE4PR3-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE4PR3-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE4PR3
@@ -1590,11 +1441,7 @@ export default function HomePage() {
                         keysProjections.indexOf("AE4PR4-Status")
                       ] === 16
                     ? { backgroundColor: "#39ad39" }
-                    : valueProjections[
-                        keysProjections.indexOf("AE4PR4-Status")
-                      ] === 1
-                    ? { backgroundColor: "#6b6b6b" }
-                    : { backgroundColor: "#889147" }
+                    : { backgroundColor: "#6b6b6b" }
                 }
               >
                 AE4PR4
@@ -1724,6 +1571,212 @@ export default function HomePage() {
               <td>
                 {value[keys.indexOf("GK3-Network")] === 1
                   ? "Ağ Aktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table
+          id="tab3"
+          className={toggleState === 4 ? "table_active" : "table"}
+        >
+          <thead>
+            <tr>
+              <th colSpan={2}>25M</th>
+              <th colSpan={2}>50M</th>
+              <th colSpan={4}>OMA</th>
+              <th colSpan={4}>OKUN</th>
+              <th colSpan={4}>AE</th>
+              <th colSpan={2}>HP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {rooms_tab_4.map((val, key) => {
+                return <td key={key}>{val}</td>;
+              })}
+            </tr>
+            <tr>
+              <td>
+                {value[keys.indexOf("25AP1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("25AP2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("50AP1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("50AP2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA3IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA4IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN3IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN4IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE3IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE4IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("HP1IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+              <td>
+                {value[keys.indexOf("HP2IG-State")] === 1
+                  ? "Bilgisayar\nAktif"
+                  : "Bilgisayar Kapalı"}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {value[keys.indexOf("25AP1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("25AP2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("50AP1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("50AP2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA3IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OMA4IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN3IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("OKUN4IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE2IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE3IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("AE4IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("HP1IG-Network")] === 1
+                  ? "Ağ\nAktif"
+                  : "Ağ Aktif \nDeğil"}
+              </td>
+              <td>
+                {value[keys.indexOf("HP2IG-Network")] === 1
+                  ? "Ağ\nAktif"
                   : "Ağ Aktif \nDeğil"}
               </td>
             </tr>
@@ -1864,6 +1917,44 @@ export default function HomePage() {
             <button
               key={key}
               className={toggleState === 3 ? "gridButtonsTab3" : "gridbtns"}
+            >
+              {yeniden_baslat}
+            </button>
+          );
+        })}
+        {rooms_tab_4.map((val, key) => {
+          return (
+            <button
+              key={key}
+              className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
+            >
+              {aç}
+            </button>
+          );
+        })}
+        <hr
+          className={toggleState === 4 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {rooms_tab_4.map((val, key) => {
+          return (
+            <button
+              key={key}
+              className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
+            >
+              {kapat}
+            </button>
+          );
+        })}
+        <hr
+          className={toggleState === 4 ? "lineActive" : "line"}
+          style={{ width: "100%" }}
+        />
+        {rooms_tab_4.map((val, key) => {
+          return (
+            <button
+              key={key}
+              className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
             >
               {yeniden_baslat}
             </button>
