@@ -1,16 +1,26 @@
 import "../App.css";
+import { Dialog } from "@mui/material";
 
-export default function LoginAlertPopup(props) {
+const WarningPopup = ({ open, close, message }) => {
   return (
-    <div className="alertContainer">
-      <h3>{props.message}</h3>
-      <button
-        onClick={() => {
-          props.close();
-        }}
-      >
-        Tamam
-      </button>
-    </div>
+    <Dialog
+      style={{ backdropFilter: "blur(3px)" }}
+      open={open}
+      onClose={close}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <div className="alertContainer">
+        <h3>{message}</h3>
+        <button
+          onClick={() => {
+            close();
+          }}
+        >
+          Tamam
+        </button>
+      </div>
+    </Dialog>
   );
-}
+};
+export default WarningPopup;

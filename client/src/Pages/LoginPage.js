@@ -73,15 +73,12 @@ export default function LoginPage() {
       >
         <img src="Shutdown.png" />
       </button>
-      <Dialog
-        style={{ backdropFilter: "blur(3px)" }}
+
+      <ClosePopup
         open={closePopup}
-        onClose={handleCloseClosePopup}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <ClosePopup close={handleCloseClosePopup} closePopup={setClosePopup} />
-      </Dialog>
+        close={() => setClosePopup(false)}
+        message={message}
+      />
 
       <div className="loginContainer">
         <div className="login">
@@ -121,19 +118,12 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <Dialog
-        style={{ backdropFilter: "blur(3px)" }}
+
+      <LoginAlertPopup
         open={alertPopup}
-        onClose={handleCloseAlertPage}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <LoginAlertPopup
-          close={handleCloseAlertPage}
-          alertPopup={setAlertPopup}
-          message={message}
-        />
-      </Dialog>
+        close={() => setAlertPopup(false)}
+        message={message}
+      />
     </>
   );
 }

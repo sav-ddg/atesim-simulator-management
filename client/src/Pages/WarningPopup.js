@@ -7,10 +7,6 @@ import InfoPopup from "./InfoPopup";
 
 const WarningPopup = ({ open, close, str }) => {
   const [infoPopup, setInfoPopup] = React.useState(false);
-  var command_pccontrol = "";
-  var command_poecontrol = "";
-  var site = "";
-  var hostname = "";
 
   const ws_message = (str) => {
     if (str === " 25m Atış Poligonu \n Açılış Modu ") {
@@ -528,7 +524,7 @@ const WarningPopup = ({ open, close, str }) => {
   };
 
   var temp = str.slice(0, str.length - 5);
-  const warning = temp + "Komutu Göndermek İstediğinize Emin Misiniz ?";
+  const warning = temp + "Komutu Göndermek İstediğinize\n Emin Misiniz ?";
   return (
     <>
       <Dialog

@@ -48,12 +48,12 @@ export const tab1_button_texts_2 = [
   " Hareketli Platformlar \n Kapanış Modu ",
 ];
 export const tab1_button_texts_3 = [
-  " 25m Atış Poligonu \n Yeniden Başlat ",
-  " 50m Atış Poligonu \n Yeniden Başlat ",
-  " Ortak Muharebe Odaları \n Yeniden Başlat ",
-  " ÖKUN Odaları \n Yeniden Başlat ",
-  " Atış Evi \n Yeniden Başlat ",
-  " Hareketli Platformlar \n Yeniden Başlat ",
+  " 25m Atış Poligonu \n Yeniden Başlatma Modu ",
+  " 50m Atış Poligonu \n Yeniden Başlatma Modu ",
+  " Ortak Muharebe Odaları \n Yeniden Başlatma Modu ",
+  " ÖKUN Odaları \n Yeniden Başlatma Modu ",
+  " Atış Evi \n Yeniden Başlatma Modu ",
+  " Hareketli Platformlar \n Yeniden Başlatma Modu ",
 ];
 
 export const tab2_button_texts_1 = [

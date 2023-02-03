@@ -1,6 +1,6 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
+
 import Axios from "axios";
 import Dialog from "@mui/material/Dialog";
 import WarningPopup from "./WarningPopup";
@@ -496,14 +496,13 @@ export default function HomePage() {
           >
             <img src="Shutdown.png" />
           </button>
-          <Dialog
+
+          <LogoutPopup
             open={logoutPopup}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <LogoutPopup close={handleClose} />
-          </Dialog>
+            close={() => {
+              setLogoutPopup(false);
+            }}
+          />
         </div>
       </div>
 
