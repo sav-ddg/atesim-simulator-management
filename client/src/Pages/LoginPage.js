@@ -1,5 +1,5 @@
 import "../App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import LoginAlertPopup from "./LoginAlertPopup";
 import { useNavigate } from "react-router-dom";
 
@@ -20,9 +20,13 @@ export default function LoginPage() {
     setMessage(str);
     setAlertPopup(true);
   };
+
+  const Navigate = useNavigate();
   const handleForm = () => {
     if (userName === userNameAdmin && password === passwordAdmin) {
-      Navigate("/login");
+      Navigate("/login", {
+        state: { user: userName },
+      });
     } else if (userName === userNameAdmin && password !== passwordAdmin) {
       handleOpenAlertPage("Lütfen Şifrenizi Kontrol Ediniz !!");
     } else if (userName !== userNameAdmin && password === passwordAdmin) {
@@ -33,7 +37,7 @@ export default function LoginPage() {
       );
     }
     if (userName === userNameUser && password === passwordAdmin) {
-      Navigate("/login");
+      Navigate("/login", { state: { user: userName } });
     } else if (userName === userNameUser && password !== passwordAdmin) {
       handleOpenAlertPage("Lütfen Şifrenizi Kontrol Ediniz !!");
     } else if (userName !== userNameUser && password === passwordUser) {
@@ -47,12 +51,10 @@ export default function LoginPage() {
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      console.log("You pressed Enter");
       handleForm();
     }
   });
 
-  const Navigate = useNavigate();
   return (
     <>
       <div className="loginContainer">

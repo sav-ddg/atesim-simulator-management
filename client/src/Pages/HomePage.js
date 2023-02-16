@@ -1,9 +1,9 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
-
+import { useLocation } from "react-router-dom";
 import Axios from "axios";
-import Dialog from "@mui/material/Dialog";
 import WarningPopup from "./WarningPopup";
+import WarningPopupTab4 from "./WarningPopupTab4";
 import {
   rooms,
   rooms_tab_3,
@@ -26,9 +26,14 @@ import {
 import LogoutPopup from "./LogoutPopup";
 export default function HomePage() {
   const [warningPopup, setWarningPopup] = React.useState(false);
+  const [warningPopupTab4, setWarningPopupTab4] = React.useState(false);
   const [str, setStr] = useState("");
   // Tab Structure
   const [toggleState, setToggleState] = useState(1);
+
+  //User
+  const location = useLocation();
+  var user = location.state.user;
 
   // DateTime
   const [time, setTime] = useState("");
@@ -112,6 +117,25 @@ export default function HomePage() {
 
   //Button Popup
   const [logoutPopup, setLogoutPopup] = React.useState(false);
+
+  //TAB4 CLICKABLE TABLE ITEMS
+  const [strTab4, setStrTab4] = useState("");
+  const [selectedItems, setSelectedItems] = useState([]);
+  const handleChange = (val) => {
+    var elementstd = document.getElementsByClassName("tab4ClickableItem");
+    var inputelements = document.querySelectorAll("td > input");
+    if (inputelements[rooms_tab_4.indexOf(val)].checked == true) {
+      elementstd[rooms_tab_4.indexOf(val)].style.background = "#0325ff";
+      selectedItems.push(val);
+    } else {
+      elementstd[rooms_tab_4.indexOf(val)].style.background = "transparent";
+      selectedItems.pop(val);
+    }
+
+    console.log(selectedItems);
+  };
+
+  //   var element = rooms_tab_4.indexOf(val);
 
   //Fetch Data From http://10.12.100.20:1880/systemstatus
   const request = () => {
@@ -460,11 +484,16 @@ export default function HomePage() {
   const handleOpen = () => {
     setLogoutPopup(true);
   };
-  const handleClose = () => {
-    setLogoutPopup(false);
-  };
 
   useEffect(() => {
+    if (user === "user") {
+      var element1 = document.getElementById("remove1");
+      var element2 = document.getElementById("remove2");
+      if (element1 !== null) {
+        element1.remove();
+        element2.remove();
+      }
+    }
     request();
     setStyleTexts();
     updateTime();
@@ -484,13 +513,14 @@ export default function HomePage() {
         </div>
         <div className="dateTimecloseButton">
           <div className="dateTime">
-            <h7 className="date">{date}</h7>
-            <h7 style={{ paddingRight: "0.8em" }} className="time">
+            <h5 className="date">{date}</h5>
+            <h5 style={{ paddingRight: "0.8em" }} className="time">
               {time}
-            </h7>
+            </h5>
           </div>
           <button
             onClick={() => {
+              console.log(user);
               handleOpen();
             }}
             className="closeBtn"
@@ -524,12 +554,14 @@ export default function HomePage() {
             Projeksiyon Kontrolü
           </h1>
           <h1
+            id="remove1"
             onClick={() => toggleTab(3)}
             className={toggleState === 3 ? "activeTab" : "tab"}
           >
             EK / GK / Taktik Plan
           </h1>
           <h1
+            id="remove2"
             onClick={() => toggleTab(4)}
             className={toggleState === 4 ? "activeTab" : "tab"}
           >
@@ -1577,7 +1609,7 @@ export default function HomePage() {
           </tbody>
         </table>
         <table
-          id="tab3"
+          id="tab4"
           className={toggleState === 4 ? "table_active" : "table"}
         >
           <thead>
@@ -1593,7 +1625,28 @@ export default function HomePage() {
           <tbody>
             <tr>
               {rooms_tab_4.map((val, key) => {
-                return <td key={key}>{val}</td>;
+                return (
+                  <td
+                    style={{ position: "relative" }}
+                    className="tab4ClickableItem"
+                    key={key}
+                  >
+                    <input
+                      style={{
+                        cursor: "pointer",
+                        position: "absolute",
+                        top: "0",
+                        left: "0",
+                        width: "100%",
+                        height: "100%",
+                        opacity: "0",
+                      }}
+                      type="checkbox"
+                      onChange={() => handleChange(val)}
+                    />
+                    <label>{val}</label>
+                  </td>
+                );
               })}
             </tr>
             <tr>
@@ -1783,7 +1836,9 @@ export default function HomePage() {
           </tbody>
         </table>
       </div>
-      <div className="gridContainer">
+      <div
+        className={toggleState !== 4 ? "gridContainer" : "gridContainerTab4"}
+      >
         {tab1_button_texts_1.map((val, key) => {
           return (
             <button
@@ -1799,11 +1854,6 @@ export default function HomePage() {
           );
         })}
 
-        <WarningPopup
-          open={warningPopup}
-          str={str}
-          close={() => setWarningPopup(false)}
-        />
         <hr
           className={toggleState === 1 ? "lineActive" : "line"}
           style={{ width: "100%" }}
@@ -1845,7 +1895,11 @@ export default function HomePage() {
             </>
           );
         })}
-
+        <WarningPopup
+          open={warningPopup}
+          str={str}
+          close={() => setWarningPopup(false)}
+        />
         {tab2_button_texts_1.map((val, key) => {
           return (
             <button
@@ -1922,44 +1976,47 @@ export default function HomePage() {
             </button>
           );
         })}
-        {rooms_tab_4.map((val, key) => {
-          return (
-            <button
-              key={key}
-              className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
-            >
-              {aç}
-            </button>
-          );
-        })}
-        <hr
-          className={toggleState === 4 ? "lineActive" : "line"}
-          style={{ width: "100%" }}
+        <div className={toggleState === 4 ? "buttonsTab4" : "gridbtns"}>
+          <button
+            onClick={() => {
+              setStrTab4("Açılış");
+              setWarningPopupTab4(true);
+            }}
+            className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
+          >
+            {aç}
+          </button>
+
+          <button
+            onClick={() => {
+              setStrTab4("Kapanış");
+              setWarningPopupTab4(true);
+            }}
+            className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
+          >
+            {kapat}
+          </button>
+
+          <button
+            onClick={() => {
+              setStrTab4("Yeniden Başlatma");
+              setWarningPopupTab4(true);
+            }}
+            className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
+          >
+            {yeniden_baslat}
+          </button>
+        </div>
+        <div className={toggleState === 4 ? "textTab4" : "gridbtns"}>
+          {selectedItems.length !== 0 ? "log" : " Lütfen Oda Seçiniz !"}
+        </div>
+
+        <WarningPopupTab4
+          open={warningPopupTab4}
+          str={strTab4}
+          selectedItems={selectedItems}
+          close={() => setWarningPopupTab4(false)}
         />
-        {rooms_tab_4.map((val, key) => {
-          return (
-            <button
-              key={key}
-              className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
-            >
-              {kapat}
-            </button>
-          );
-        })}
-        <hr
-          className={toggleState === 4 ? "lineActive" : "line"}
-          style={{ width: "100%" }}
-        />
-        {rooms_tab_4.map((val, key) => {
-          return (
-            <button
-              key={key}
-              className={toggleState === 4 ? "gridButtonsTab4" : "gridbtns"}
-            >
-              {yeniden_baslat}
-            </button>
-          );
-        })}
       </div>
     </div>
   );
